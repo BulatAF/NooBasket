@@ -9,16 +9,9 @@
             InitializeComponent();
         }
 
-        private void OnCounterClicked(object? sender, EventArgs e)
+        private void ButtonClicked(object? sender, EventArgs e)
         {
-            count -= 3;
-
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            DisplayAlert("ПК", "Да, я погорячился", "Дать пк в морду");
         }
     }
 }
