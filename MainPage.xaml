@@ -2,26 +2,16 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NooBasket.MainPage">
-    <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, *" Padding="10">
-        
-        <StackLayout Orientation="Vertical" Padding="10" Grid.Column="0" Grid.Row="0">
-            
-        <Label Text="Hello everybode!"
-            FontSize ="25"
-            TextColor="Black"
-            HorizontalOptions="Center"/>
-        
-        <Label Text="How are you?"
-            FontSize ="20"
-            TextColor="Black"
-            HorizontalOptions="Center"/>
-        </StackLayout>
-        
-        <Entry Placeholder="Enter information" Grid.Row="1" Grid.Column="0"/>
+    <FlexLayout Direction="Column" Padding="20">
+        <Label Text="Генератор паролей" FontSize="30" HorizontalOptions="Center"/>
 
-        <Editor Placeholder="Enter big information" AutoSize="TextChanges" Grid.Row="1" Grid.Column="1"/>
+        <Label Text="Длина пароля: " />
+        <Label Text="{Binding PasswordLenght}" FontSize="20" />
+        
+        <Stepper  Maximum="16" Minimum="4" Increment="1" Value="{Binding PasswordLenght, Mode=TwoWay}"/>
+        
+        <Button Text="Сгенерировать парроль" Command="{Binding GeneratePassCommand}"/>
 
-        <Button Text="Its all" TextColor="DarkGrey" Grid.Row="0" Grid.Column="1"/>
-    </Grid>
-    
+        <Label Text="{Binding Result}" FontSize="30" FontAttributes="Bold"/>
+    </FlexLayout>
 </ContentPage>
