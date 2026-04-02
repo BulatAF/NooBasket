@@ -4,17 +4,13 @@
              x:Class="NooBasket.MainPage"
              Shell.NavBarIsVisible="False"
              BackgroundColor="#FFD66C">
-
-    <!-- Используем Grid с "пружинами" (*), чтобы контент всегда был в центре -->
-        <Grid RowDefinitions="*, Auto, *" Padding="30">
+    
+    <Grid RowDefinitions="*, Auto, *" Padding="10">
 
             <VerticalStackLayout Grid.Row="1" 
                              Spacing="15" 
                              HorizontalOptions="Center"
                              MaximumWidthRequest="450">
-                <!-- Ограничение ширины для планшетов и ПК -->
-
-                <!-- Заголовок: используем системный размер Header -->
                 <Label Text="NooBasket"
                    TextColor="#405CA3" 
                    FontSize="Header" 
@@ -22,7 +18,6 @@
                    HorizontalOptions="Center"
                    Margin="0,0,0,25" />
 
-                <!-- Кнопки: используем системный размер Medium -->
                 <Button Text="Обучение" 
                     BackgroundColor="#405CA3" 
                     TextColor="#FFD66C" 
@@ -30,7 +25,7 @@
                     FontAttributes="Bold" 
                     FontSize="Medium" 
                     HeightRequest="65" 
-                    WidthRequest="280" 
+                    WidthRequest="350"
                     HorizontalOptions="Center" />
 
                 <Button Text="Тесты" 
@@ -40,20 +35,20 @@
                     FontAttributes="Bold" 
                     FontSize="Medium" 
                     HeightRequest="65" 
-                    WidthRequest="280" 
+                    WidthRequest="350" 
                     HorizontalOptions="Center" />
 
-                <Button Text="Тех. поддержка" 
+                <Button Text="Техническая поддержка" 
                     BackgroundColor="#405CA3" 
                     TextColor="#FFD66C" 
                     CornerRadius="18" 
                     FontAttributes="Bold" 
                     FontSize="Medium" 
                     HeightRequest="65" 
-                    WidthRequest="280" 
+                    WidthRequest="350" 
                     HorizontalOptions="Center" />
 
             </VerticalStackLayout>
 
         </Grid>
-    </ContentPage>
+</ContentPage>
