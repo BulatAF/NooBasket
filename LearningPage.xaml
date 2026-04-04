@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NooBasket.LearningPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#FFD66C">
+
+    <ContentPage.Resources>
+        <!-- Стиль для активной кнопки темы -->
+        <Style x:Key="TopicButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#405CA3"/>
+            <Setter Property="TextColor" Value="#FFD66C"/>
+            <Setter Property="CornerRadius" Value="18"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="HeightRequest" Value="55"/>
+            <Setter Property="Padding" Value="16,0"/>
+            <Setter Property="Margin" Value="0,3"/>
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Opacity" Value="1.0"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Opacity" Value="0.7"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+
+        <!-- Стиль для заблокированной кнопки темы -->
+        <Style x:Key="LockedTopicButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#405CA3"/>
+            <Setter Property="TextColor" Value="#FFD66C"/>
+            <Setter Property="CornerRadius" Value="18"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="HeightRequest" Value="55"/>
+            <Setter Property="Padding" Value="16,0"/>
+            <Setter Property="Margin" Value="0,3"/>
+            <Setter Property="Opacity" Value="0.5"/>
+            <Setter Property="IsEnabled" Value="False"/>
+        </Style>
+
+        <!-- Стиль для кнопки назад -->
+        <Style x:Key="BackButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#405CA3"/>
+            <Setter Property="TextColor" Value="#FFD66C"/>
+            <Setter Property="CornerRadius" Value="18"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HeightRequest" Value="45"/>
+            <Setter Property="WidthRequest" Value="100"/>
+            <Setter Property="Margin" Value="0,20,0,0"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto, *, Auto" 
+          Padding="40,20,40,20">
+
+        <!-- Шапка с заголовком и кнопкой назад -->
+        <Grid Grid.Row="0" ColumnDefinitions="Auto, *">
+            <Button Grid.Column="0" 
+                    Text="Назад" 
+                    Style="{StaticResource BackButtonStyle}"
+                    Clicked="OnBackClicked" />
+
+            <Label Grid.Column="1" 
+                   Text="Обучение"
+                   TextColor="#405CA3" 
+                   FontSize="32" 
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Margin="0,0,40,0" />
+        </Grid>
+
+        <!-- ScrollView для списка тем -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Spacing="10" 
+                                 VerticalOptions="Center"
+                                 Padding="0,20">
+
+                <!-- Тема 1 - всегда активна -->
+                <Button x:Name="Topic1Button"
+                        Text="Тема 1: Основные правила баскетбола" 
+                        Style="{StaticResource TopicButtonStyle}"
+                        Clicked="OnTopicClicked"
+                        CommandParameter="1" />
+
+                <!-- Тема 2 - будет разблокирована после теста темы 1 -->
+                <Button x:Name="Topic2Button"
+                        Text="Тема 2: Нарушения и фолы" 
+                        Style="{StaticResource LockedTopicButtonStyle}" />
+
+                <!-- Тема 3 -->
+                <Button x:Name="Topic3Button"
+                        Text="Тема 3: Броски и очки" 
+                        Style="{StaticResource LockedTopicButtonStyle}" />
+
+                <!-- Тема 4 -->
+                <Button x:Name="Topic4Button"
+                        Text="Тема 4: Позиции игроков" 
+                        Style="{StaticResource LockedTopicButtonStyle}" />
+
+                <!-- Тема 5 -->
+                <Button x:Name="Topic5Button"
+                        Text="Тема 5: Тактика и стратегия" 
+                        Style="{StaticResource LockedTopicButtonStyle}" />
+
+                <!-- Тема 6 -->
+                <Button x:Name="Topic6Button"
+                        Text="Тема 6: Соревнования и турниры" 
+                        Style="{StaticResource LockedTopicButtonStyle}" />
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+    </Grid>
+</ContentPage>

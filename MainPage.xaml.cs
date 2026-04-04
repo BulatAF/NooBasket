@@ -1,17 +1,32 @@
-﻿namespace NooBasket
+﻿namespace NooBasket;
+
+public partial class MainPage : ContentPage
 {
-    public partial class MainPage : ContentPage
+    public MainPage()
     {
-        int count = 0;
+        InitializeComponent();
+    }
 
-        public MainPage()
+    private async void OnLearningClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new LearningPage());
+    }
+
+    private async void OnTestsClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new TestsPage());
+    }
+
+    private async void OnSupportClicked(object sender, EventArgs e)
+    {
+        string tgLink = "https://t.me/+YOALAx9A_kNjYzM6";
+        try
         {
-            InitializeComponent();
+            await Launcher.OpenAsync(tgLink);
         }
-
-        private void ButtonClicked(object? sender, EventArgs e)
+        catch (Exception ex)
         {
-            DisplayAlert("ПК", "Да, я погорячился", "Дать пк в морду");
+            await DisplayAlert("Ошибка", "Не удалось открыть Telegram номер тел. разработчика: +79922378745", "OK");
         }
     }
 }
