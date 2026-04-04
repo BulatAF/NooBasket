@@ -2,11 +2,158 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NooBasket.TestsPage"
-             Title="TestsPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#FFD66C">
+
+    <ContentPage.Resources>
+        <!-- Стиль для доступного теста -->
+        <Style x:Key="TestButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#405CA3"/>
+            <Setter Property="TextColor" Value="#FFD66C"/>
+            <Setter Property="CornerRadius" Value="18"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="HeightRequest" Value="55"/>
+            <Setter Property="Padding" Value="16,0"/>
+            <Setter Property="Margin" Value="0,3"/>
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Opacity" Value="1.0"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Opacity" Value="0.7"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+
+        <!-- Стиль для пройденного теста -->
+        <Style x:Key="CompletedTestButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#2E7D32"/>
+            <Setter Property="TextColor" Value="#FFD66C"/>
+            <Setter Property="CornerRadius" Value="18"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="HeightRequest" Value="55"/>
+            <Setter Property="Padding" Value="16,0"/>
+            <Setter Property="Margin" Value="0,3"/>
+        </Style>
+
+        <!-- Стиль для заблокированного теста -->
+        <Style x:Key="LockedTestButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#405CA3"/>
+            <Setter Property="TextColor" Value="#FFD66C"/>
+            <Setter Property="CornerRadius" Value="18"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="HeightRequest" Value="55"/>
+            <Setter Property="Padding" Value="16,0"/>
+            <Setter Property="Margin" Value="0,3"/>
+            <Setter Property="Opacity" Value="0.5"/>
+            <Setter Property="IsEnabled" Value="False"/>
+        </Style>
+
+        <!-- Стиль для кнопки назад -->
+        <Style x:Key="BackButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#405CA3"/>
+            <Setter Property="TextColor" Value="#FFD66C"/>
+            <Setter Property="CornerRadius" Value="18"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HeightRequest" Value="45"/>
+            <Setter Property="WidthRequest" Value="100"/>
+            <Setter Property="Margin" Value="0,20,0,0"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto, *, Auto" 
+          Padding="40,20,40,20">
+
+        <!-- Шапка с заголовком и кнопкой назад -->
+        <Grid Grid.Row="0" ColumnDefinitions="Auto, *">
+            <Button Grid.Column="0" 
+                    Text="Назад" 
+                    Style="{StaticResource BackButtonStyle}"
+                    Clicked="OnBackClicked" />
+
+            <Label Grid.Column="1" 
+                   Text="Тесты"
+                   TextColor="#405CA3" 
+                   FontSize="32" 
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Margin="0,0,40,0" />
+        </Grid>
+
+        <!-- ScrollView для списка тестов -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout Spacing="10" 
+                                 VerticalOptions="Center"
+                                 Padding="0,20">
+
+                <!-- Тест 1 -->
+                <Button x:Name="Test1Button"
+                        Text="Тест 1: Основные правила баскетбола" 
+                        Style="{StaticResource TestButtonStyle}"
+                        Clicked="OnTestClicked"
+                        CommandParameter="1" />
+
+                <!-- Тест 2 -->
+                <Button x:Name="Test2Button"
+                        Text="Тест 2: Нарушения и фолы" 
+                        Style="{StaticResource LockedTestButtonStyle}"
+                        Clicked="OnTestClicked"
+                        CommandParameter="2" />
+
+                <!-- Тест 3 -->
+                <Button x:Name="Test3Button"
+                        Text="Тест 3: Броски и очки" 
+                        Style="{StaticResource LockedTestButtonStyle}"
+                        Clicked="OnTestClicked"
+                        CommandParameter="3" />
+
+                <!-- Тест 4 -->
+                <Button x:Name="Test4Button"
+                        Text="Тест 4: Позиции игроков" 
+                        Style="{StaticResource LockedTestButtonStyle}"
+                        Clicked="OnTestClicked"
+                        CommandParameter="4" />
+
+                <!-- Тест 5 -->
+                <Button x:Name="Test5Button"
+                        Text="Тест 5: Тактика и стратегия" 
+                        Style="{StaticResource LockedTestButtonStyle}"
+                        Clicked="OnTestClicked"
+                        CommandParameter="5" />
+
+                <!-- Тест 6 -->
+                <Button x:Name="Test6Button"
+                        Text="Тест 6: Соревнования и турниры" 
+                        Style="{StaticResource LockedTestButtonStyle}"
+                        Clicked="OnTestClicked"
+                        CommandParameter="6" />
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Нижняя информация с прогрессом -->
+        <Grid Grid.Row="2" Padding="0,10,0,0">
+            <Label x:Name="ProgressLabel"
+                   Text="Пройдено тестов: 0 из 6"
+                   TextColor="#405CA3"
+                   FontSize="14"
+                   FontAttributes="Italic"
+                   HorizontalOptions="Center"
+                   Opacity="0.8" />
+        </Grid>
+
+    </Grid>
 </ContentPage>

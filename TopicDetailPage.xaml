@@ -5,35 +5,51 @@
              Shell.NavBarIsVisible="False"
              BackgroundColor="#FFD66C">
 
+    <ContentPage.Resources>
+        <!-- Стиль для кнопки назад -->
+        <Style x:Key="BackButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#405CA3"/>
+            <Setter Property="TextColor" Value="#FFD66C"/>
+            <Setter Property="CornerRadius" Value="18"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HeightRequest" Value="45"/>
+            <Setter Property="WidthRequest" Value="100"/>
+            <Setter Property="Margin" Value="20,20,0,0"/>
+        </Style>
+    </ContentPage.Resources>
+
     <!-- Две строки: Шапка (фиксирована) и Контент (скроллится) -->
     <Grid RowDefinitions="Auto, *" BackgroundColor="#FFD66C">
 
-        <!-- 1. Шапка -->
+        <!-- 1. Шапка с центрированным заголовком -->
         <Grid Grid.Row="0" 
-              ColumnDefinitions="Auto, *, Auto" 
-              Padding="20, 50, 20, 20"
+              ColumnDefinitions="*, Auto, *" 
+              Padding="0, 20, 20, 20"
               VerticalOptions="Center">
 
+            <!-- Левая колонка с кнопкой назад -->
             <Button Grid.Column="0"
-                    Text="&#x2190;"
-                    TextColor="#405CA3"
-                    FontSize="38"
-                    FontAttributes="Bold"
-                    BackgroundColor="Transparent"
-                    Padding="0" Margin="0"
-                    VerticalOptions="Center" HorizontalOptions="Center"
+                    Text="Назад"
+                    Style="{StaticResource BackButtonStyle}"
+                    HorizontalOptions="Start"
                     Clicked="OnBackClicked" />
 
+            <!-- Название темы по центру -->
             <Label Grid.Column="1"
                    x:Name="TopicTitleLabel"
-                   Text="Загрузка..."
+                   Text="Здесь будет вставлена тема из кода"
                    TextColor="#405CA3"
                    FontSize="26"
                    FontAttributes="Bold"
                    HorizontalOptions="Center"
-                   VerticalOptions="Center" />
+                   VerticalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   LineBreakMode="WordWrap" />
 
-            <BoxView Grid.Column="2" WidthRequest="40" IsVisible="False" />
+            <!-- Правая колонка для баланса (пустая) -->
+            <Grid Grid.Column="2" />
+
         </Grid>
 
         <!-- 2. Скроллящаяся область (текст + кнопка внизу) -->
@@ -42,7 +58,7 @@
 
                 <!-- Сюда C# будет добавлять тексты и картинки -->
 
-                <!-- Кнопка теперь ВНУТРИ скролла, в самом низу контента -->
+                <!-- Кнопка внизу контента -->
                 <Button Text="Пройти тест по теме"
                         BackgroundColor="#405CA3"
                         TextColor="#FFD66C"
