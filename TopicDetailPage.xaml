@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NooBasket.TopicDetailPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#FFD66C">
+
+    <!-- Две строки: Шапка (фиксирована) и Контент (скроллится) -->
+    <Grid RowDefinitions="Auto, *" BackgroundColor="#FFD66C">
+
+        <!-- 1. Шапка -->
+        <Grid Grid.Row="0" 
+              ColumnDefinitions="Auto, *, Auto" 
+              Padding="20, 50, 20, 20"
+              VerticalOptions="Center">
+
+            <Button Grid.Column="0"
+                    Text="&#x2190;"
+                    TextColor="#405CA3"
+                    FontSize="38"
+                    FontAttributes="Bold"
+                    BackgroundColor="Transparent"
+                    Padding="0" Margin="0"
+                    VerticalOptions="Center" HorizontalOptions="Center"
+                    Clicked="OnBackClicked" />
+
+            <Label Grid.Column="1"
+                   x:Name="TopicTitleLabel"
+                   Text="Загрузка..."
+                   TextColor="#405CA3"
+                   FontSize="26"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center" />
+
+            <BoxView Grid.Column="2" WidthRequest="40" IsVisible="False" />
+        </Grid>
+
+        <!-- 2. Скроллящаяся область (текст + кнопка внизу) -->
+        <ScrollView Grid.Row="1" Padding="20, 0, 20, 50">
+            <VerticalStackLayout x:Name="ContentStack" Spacing="20">
+
+                <!-- Сюда C# будет добавлять тексты и картинки -->
+
+                <!-- Кнопка теперь ВНУТРИ скролла, в самом низу контента -->
+                <Button Text="Пройти тест по теме"
+                        BackgroundColor="#405CA3"
+                        TextColor="#FFD66C"
+                        CornerRadius="15"
+                        HeightRequest="50"
+                        HorizontalOptions="Center"
+                        WidthRequest="280"
+                        Margin="0,50,0,20"
+                        Clicked="OnStartTestClicked" />
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+    </Grid>
+</ContentPage>

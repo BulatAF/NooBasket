@@ -85,7 +85,7 @@ namespace NooBasket
 
             if (int.TryParse(param, out int topicNumber))
             {
-                //await Navigation.PushAsync(new TopicDetailPage(topicNumber));
+                await Navigation.PushAsync(new TopicDetailPage(topicNumber));
             }
         }
 
