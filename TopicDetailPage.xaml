@@ -58,17 +58,6 @@
 
                 <!-- Сюда C# будет добавлять тексты и картинки -->
 
-                <!-- Кнопка внизу контента -->
-                <Button Text="Пройти тест по теме"
-                        BackgroundColor="#405CA3"
-                        TextColor="#FFD66C"
-                        CornerRadius="15"
-                        HeightRequest="50"
-                        HorizontalOptions="Center"
-                        WidthRequest="280"
-                        Margin="0,50,0,20"
-                        Clicked="OnStartTestClicked" />
-
             </VerticalStackLayout>
         </ScrollView>
 

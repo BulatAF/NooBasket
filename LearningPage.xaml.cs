@@ -1,80 +1,38 @@
 using Microsoft.Maui.Controls;
+using NooBasket.Services;
 
 namespace NooBasket
 {
     public partial class LearningPage : ContentPage
     {
-        private bool[] unlockedTopics = new bool[6];
-
         public LearningPage()
         {
             InitializeComponent();
-            LoadProgress();
-            UpdateTopicsStatus();
         }
 
-        private void LoadProgress()
+        private async Task RenderTopicsAsync()
         {
-            // Тема 1 всегда разблокирована
-            unlockedTopics[0] = true;
+            // РќР° РІСЃСЏРєРёР№ СЃР»СѓС‡Р°Р№ РѕС‡РёС‰Р°РµРј СЃРїРёСЃРѕРє С‚РµРј, С‡С‚РѕР±С‹ РїСЂРё РїРѕРІС‚РѕСЂРЅРѕРј Р·Р°С…РѕРґРµ РЅР° СЃС‚СЂР°РЅРёС†Сѓ
+            // РєРЅРѕРїРєРё РЅРµ РґСѓР±Р»РёСЂРѕРІР°Р»РёСЃСЊ.
+            TopicsStack.Children.Clear();
 
-            // Загружаем статус остальных тем
-            for (int i = 1; i < unlockedTopics.Length; i++)
+            // Р—Р°РіСЂСѓР¶Р°РµРј РІСЃРµ С‚РµРјС‹ РёР· РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р°
+            var content = await LearningContentStore.LoadAsync();
+
+            // РЎРѕР·РґР°С‘Рј РєРЅРѕРїРєСѓ РЅР° РєР°Р¶РґСѓСЋ С‚РµРјСѓ
+            foreach (var topic in content.Topics)
             {
-                unlockedTopics[i] = Preferences.Get($"topic_{i + 1}_unlocked", false);
-            }
-        }
-
-        private void SaveProgress()
-        {
-            for (int i = 1; i < unlockedTopics.Length; i++)
-            {
-                Preferences.Set($"topic_{i + 1}_unlocked", unlockedTopics[i]);
-            }
-        }
-
-        private void UpdateTopicsStatus()
-        {
-            // Массив кнопок (имена должны совпадать с x:Name в XAML)
-            Button[] buttons = { Topic1Button, Topic2Button, Topic3Button,
-                                 Topic4Button, Topic5Button, Topic6Button };
-
-            string[] topicNames = {
-                "Тема 1: Основные правила баскетбола",
-                "Тема 2: Нарушения и фолы",
-                "Тема 3: Броски и очки",
-                "Тема 4: Позиции игроков",
-                "Тема 5: Тактика и стратегия",
-                "Тема 6: Соревнования и турниры"
-            };
-
-            for (int i = 0; i < buttons.Length; i++)
-            {
-                if (buttons[i] != null)
+                var btn = new Button
                 {
-                    if (unlockedTopics[i])
-                    {
-                        buttons[i].Style = (Style)Resources["TopicButtonStyle"];
-                        buttons[i].IsEnabled = true;
-                        buttons[i].Text = topicNames[i];
-                    }
-                    else
-                    {
-                        buttons[i].Style = (Style)Resources["LockedTopicButtonStyle"];
-                        buttons[i].Text = $"Тема {i + 1} (заблокировано)";
-                    }
-                }
-            }
-        }
+                    Text = topic.Title,
+                    Style = (Style)Resources["TopicButtonStyle"],
+                    CommandParameter = topic.Id.ToString()
+                };
 
-        public void UnlockNextTopic(int completedTopic)
-        {
-            if (completedTopic >= 1 && completedTopic < 6)
-            {
-                unlockedTopics[completedTopic] = true;
-                SaveProgress();
-                UpdateTopicsStatus();
-                DisplayAlert("Успех", $"Тема {completedTopic + 1} разблокирована", "OK");
+                // РџСЂРё РєР»РёРєРµ РѕС‚РєСЂС‹РІР°РµРј СЃС‚СЂР°РЅРёС†Сѓ С‚РµРјС‹
+                btn.Clicked += OnTopicClicked;
+
+                TopicsStack.Children.Add(btn);
             }
         }
 
@@ -97,8 +55,10 @@ namespace NooBasket
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            LoadProgress();
-            UpdateTopicsStatus();
+
+            // Р—Р°РіСЂСѓР¶Р°РµРј С‚РµРјС‹ РєР°Р¶РґС‹Р№ СЂР°Р· РїСЂРё РїРѕРєР°Р·Рµ СЃС‚СЂР°РЅРёС†С‹.
+            // (РўР°Рє РїСЂРѕС‰Рµ Рё РїРѕРЅСЏС‚РЅРµРµ. Р•СЃР»Рё Р·Р°С…РѕС‚РёРј вЂ” РїРѕР·Р¶Рµ РјРѕР¶РЅРѕ РґРѕР±Р°РІРёС‚СЊ РєСЌС€.)
+            _ = RenderTopicsAsync();
         }
     }
 }
