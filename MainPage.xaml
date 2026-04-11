@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NooBasket.MainPage">
 
-    <StackLayout Orientation="Vertical" Spacing="30" Padding="30">
+    <StackLayout Orientation="Vertical" Padding="30">
         <Label Text="Добро пожаловать в NooBasket!" 
             FontSize="24"
             HorizontalOptions="Center"
@@ -13,10 +13,16 @@
 
         <Button Text="Пройти обучение" 
                 Clicked="OnGoToEducationPage"
+                Margin="20"
                 />
 
         <Button Text="Пройти тесты" 
-                Clicked="OnGoToTestingPage"/>
+                Clicked="OnGoToTestingPage"
+                Margin="20"/>
+        
+        <Button Text="Обратится в техподдержку"
+                HorizontalOptions="End"
+                Margin="20"/>
     </StackLayout>
 
     

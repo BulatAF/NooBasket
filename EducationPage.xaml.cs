@@ -14,4 +14,9 @@ public partial class EducationPage : ContentPage
     {
         await Shell.Current.GoToAsync("//MainPage");
     }
+
+    private async void OnGoToTopic1Page(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//Topic1Page");
+    }
 }
