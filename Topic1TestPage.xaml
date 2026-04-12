@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="NooBasket.EducationPage">
-
+             x:Class="NooBasket.Topic1TestPage">
+    
     <ScrollView Orientation="Vertical" Padding="30">
         <StackLayout>
             <Button Text="Назад" 
-                 Clicked="OnGoToMainPage"
-                Margin="20"/>
-
-            <Button Text="Тема 1. Общая информация об игре" 
                 Clicked="OnGoToTopic1Page"
                 Margin="20"/>
 
-            <Button Text="Тема 2. Площадка" 
+            <Button Text="Перейти к изучению темы 2" 
                 Clicked="OnGoToTopic2Page"
                 Margin="20"/>
-        </StackLayout>        
+            
+
+        </StackLayout>
+
     </ScrollView>
 </ContentPage>
