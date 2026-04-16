@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NooBasket.Test1"
+             Title="Test1">
+    <VerticalStackLayout Spacing="20" Padding="10" HorizontalOptions="Center">
+        <Label x:Name="Text" FontSize="30"/>
+        <Button x:Name="Num1" Clicked="QuestionsClick"/>
+        <Button x:Name="Num2"/>
+        <Button x:Name="Num3"/>
+    </VerticalStackLayout>
+</ContentPage>

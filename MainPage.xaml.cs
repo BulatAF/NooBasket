@@ -1,4 +1,4 @@
-﻿using NooBasket.ViewModels;
+﻿using System.Threading.Tasks;
 namespace NooBasket
 {
     public partial class MainPage : ContentPage
@@ -6,7 +6,11 @@ namespace NooBasket
         public MainPage()
         {
             InitializeComponent();
-            BindingContext = new MainViewModels();
+        }
+
+        private async void NextStr(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("//MenuTests");
         }
     }
 }

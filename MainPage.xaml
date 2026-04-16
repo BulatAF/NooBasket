@@ -2,19 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NooBasket.MainPage">
-    <Grid  RowDefinitions="Auto, Auto" ColumnDefinitions="*,*,*" 
-           Padding="10">
-        <Label Text="{Binding Test.Question}" FontSize="15" HorizontalOptions="Center"
-               Grid.Column="1" Grid.Row="0"/>
-        <StackLayout Grid.Column="1" Grid.Row="1" Padding="5" Spacing = "10">
-            <Button Text="{Binding Test.Variants[0]}" 
-                    Command="{Binding ReplayColor1Command}" BackgroundColor="{Binding NewColor1}"/>
-            <Button Text="{Binding Test.Variants[1]}" 
-                    Command="{Binding ReplayColor2Command}" BackgroundColor="{Binding NewColor2}"/>
-            <Button Text="{Binding Test.Variants[2]}" 
-                    Command="{Binding ReplayColor3Command}" BackgroundColor="{Binding NewColor3}"/>
-            <Button Text="{Binding Test.Variants[3]}"
-                    Command="{Binding ReplayColor4Command}" BackgroundColor="{Binding NewColor4}"/>
-        </StackLayout>
-    </Grid>
+    <VerticalStackLayout>
+        <Button Clicked="NextStr" Text="Выбрать тест"
+                VerticalOptions="Center" HorizontalOptions="Center"/>
+    </VerticalStackLayout>
 </ContentPage>

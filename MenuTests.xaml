@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NooBasket.MenuTests"
+             Title="MenuTests">
+    <VerticalStackLayout Spacing="20" Padding="10">
+        <Label 
+            Text="Тесты по темам"
+            HorizontalOptions="Center"
+            FontSize="30"/>
+        <Button Text="Тема 1" Clicked="Test"/>
+        <Button Text="Тема 2" Clicked="Test"/>
+        <Button Text="Тема 3" Clicked="Test"/>
+        <Button Text="Тема 4" Clicked="Test"/>
+        <Button Text="Тема 5" Clicked="Test"/>
+        <Button Text="Тема 6" Clicked="Test"/>
+    </VerticalStackLayout>
+</ContentPage>
