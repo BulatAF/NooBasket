@@ -2,31 +2,35 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NooBasket.MainPage">
-    <ScrollView>
-        <StackLayout Orientation="Vertical" Padding="30">
+
+    <!-- Grid с 3 строками: верх, растягиваемая середина, низ -->
+    <Grid RowDefinitions="Auto, *, Auto" Padding="20">
+
+        <!-- ВЕРХ: заголовок и две основные кнопки -->
+        <VerticalStackLayout Grid.Row="0" Spacing="15" HorizontalOptions="Center">
+
             <Label Text="Добро пожаловать в NooBasket!" 
-         FontSize="24"
-         HorizontalOptions="Center"
-            VerticalTextAlignment="Center"
-            HorizontalTextAlignment="Center"
-            Padding="20"/>
+                   FontSize="24"
+                   HorizontalTextAlignment="Center"
+                   Padding="0,0,0,20"/>
 
             <Button Text="Пройти обучение" 
-             Clicked="OnGoToEducationPage"
-             Margin="20"
-             />
+                    Clicked="OnLearningClicked"
+                    Margin="0,5"/>
 
             <Button Text="Пройти тесты" 
-             Clicked="OnGoToTestingPage"
-             Margin="20"/>
+                    Clicked="OnTestsClicked"
+                    Margin="0,5"/>
+        </VerticalStackLayout>
 
-            <Button Text="Обратится в техподдержку"
-             HorizontalOptions="End"
-             Margin="20"/>
-        </StackLayout>
-    </ScrollView>
-   
+        <!-- СЕРЕДИНА: пустая, просто расталкивает низ -->
+        <!-- Ничего не добавляем -->
 
-    
-
+        <!-- НИЗ: кнопка поддержки, прижата к низу -->
+        <Button Grid.Row="2"
+                Text="Обратиться в техподдержку"
+                Clicked="OnSupportClicked"
+                HorizontalOptions="Center"
+                Margin="0,20"/>
+    </Grid>
 </ContentPage>
