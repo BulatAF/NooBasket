@@ -10,8 +10,8 @@ namespace NooBasket
 {
     class TestEngine
     {
-        List<Question> _questions;
-        int[] _userAnswers = null;
+        List<Question>? _questions;
+        int[]? _userAnswers = null;
         int _current = 0;
 
         public async Task LoadFromJson(string nameJSON)
@@ -31,7 +31,7 @@ namespace NooBasket
         {
             return _questions[id]?.Text;
         }
-        public string?[] PrintVarAnswer(int id)
+        public string[]? PrintVarAnswer(int id)
         {
             return _questions[id]?.Various;
         }
