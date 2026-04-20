@@ -11,6 +11,6 @@ public partial class MenuTests : ContentPage
 
     private async void Test(object sender, EventArgs e)
     {
-		await Navigation.PushAsync(new Test1());
+		await Navigation.PushAsync(new Test1(0, "jsconfig1.json"));
     }
 }

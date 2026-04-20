@@ -8,5 +8,6 @@
         <Button x:Name="Num1" Clicked="QuestionsClick"/>
         <Button x:Name="Num2"/>
         <Button x:Name="Num3"/>
+        <Button Text="Следующий" Clicked="NextPage"/>
     </VerticalStackLayout>
 </ContentPage>

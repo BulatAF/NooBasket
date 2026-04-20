@@ -10,9 +10,9 @@ namespace NooBasket
 {
     class TestEngine
     {
-        List<Question>? _questions;
-        int[]? _userAnswers = null;
-        int _current = 0;
+        public List<Question>? Questions;
+        public int[]? UserAnswers = null;
+        public int Current = 0;
 
         public async Task LoadFromJson(string nameJSON)
         {
@@ -21,19 +21,10 @@ namespace NooBasket
                 "Учёба\\Курсовой проект\\NooBasket\\Models\\" + nameJSON, FileMode.Open))
             {
                 List<Question>? questions = await JsonSerializer.DeserializeAsync<List<Question>>(fs);
-                _questions = questions ?? new List<Question>();
-                _userAnswers = new int[_questions.Count];
-                Array.Fill(_userAnswers, -1);
+                Questions = questions ?? new List<Question>();
+                UserAnswers = new int[Questions.Count];
+                Array.Fill(UserAnswers, -1);
             }
-        }
-
-        public string? PrintQuestion(int id)
-        {
-            return _questions[id]?.Text;
-        }
-        public string[]? PrintVarAnswer(int id)
-        {
-            return _questions[id]?.Various;
         }
     }
 }
