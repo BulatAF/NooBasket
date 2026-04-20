@@ -10,18 +10,12 @@ namespace NooBasket.Models
     {
         public string Text { get; set; }
         public string[] Various { get; set; }
-        public int CorrectAnswer { get; set; }
+        public string AnswerText { get; set; }
         public Question()
         {
             Text = "404?";
-            Various = [ "401", "402", "403"];
-            CorrectAnswer = 2;
-        }
-        public Question(string text, string[] various, int correctAnswer)
-        {
-            Text = text;
-            Various = various;
-            CorrectAnswer = correctAnswer;
+            Various = [ "", "", ""];
+            AnswerText = "ОШИБКА 404";
         }
     }
 }

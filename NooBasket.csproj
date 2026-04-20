@@ -60,15 +60,21 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiAsset Include="Models\jsconfig1.json">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </MauiAsset>
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.5" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Test1.xaml.cs">
+	    <DependentUpon>Test1.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiAsset Update="Resources\Raw\Topic1.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </MauiAsset>
 	</ItemGroup>
 
 	<ItemGroup>

@@ -8,11 +8,11 @@
             Text="Тесты по темам"
             HorizontalOptions="Center"
             FontSize="30"/>
-        <Button Text="Тема 1" Clicked="Test"/>
-        <Button Text="Тема 2" Clicked="Test"/>
-        <Button Text="Тема 3" Clicked="Test"/>
-        <Button Text="Тема 4" Clicked="Test"/>
-        <Button Text="Тема 5" Clicked="Test"/>
-        <Button Text="Тема 6" Clicked="Test"/>
+        <Button Text="Тема 1" Clicked="Test1"/>
+        <Button Text="Тема 2" Clicked="Test1"/>
+        <Button Text="Тема 3" Clicked="Test1"/>
+        <Button Text="Тема 4" Clicked="Test1"/>
+        <Button Text="Тема 5" Clicked="Test1"/>
+        <Button Text="Тема 6" Clicked="Test1"/>
     </VerticalStackLayout>
 </ContentPage>

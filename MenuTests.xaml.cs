@@ -9,8 +9,10 @@ public partial class MenuTests : ContentPage
 		InitializeComponent();
 	}
 
-    private async void Test(object sender, EventArgs e)
+    private async void Test1(object sender, EventArgs e)
     {
-		await Navigation.PushAsync(new Test1(0, "jsconfig1.json"));
+		Button button = (Button)sender;
+		if (button.Text == "Тема 1")
+			await Navigation.PushAsync(new Test1(0, "Topic1.json"));
     }
 }

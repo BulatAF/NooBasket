@@ -1,4 +1,5 @@
-﻿using NooBasket.Models;
+﻿using Microsoft.Maui.Storage;
+using NooBasket.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,19 +13,17 @@ namespace NooBasket
     {
         public List<Question>? Questions;
         public int[]? UserAnswers = null;
-        public int Current = 0;
 
         public async Task LoadFromJson(string nameJSON)
         {
-            //Path.Combine(FileSystem.AppDataDirectory, nameJSON);
-            using (FileStream fs = new FileStream("C:\\Users\\Серёжа Родионов\\Desktop\\" +
-                "Учёба\\Курсовой проект\\NooBasket\\Models\\" + nameJSON, FileMode.Open))
-            {
-                List<Question>? questions = await JsonSerializer.DeserializeAsync<List<Question>>(fs);
-                Questions = questions ?? new List<Question>();
-                UserAnswers = new int[Questions.Count];
-                Array.Fill(UserAnswers, -1);
-            }
+            using var stream = await FileSystem.Current.OpenAppPackageFileAsync(nameJSON);
+
+            var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+
+            List<Question>? questions = await JsonSerializer.DeserializeAsync<List<Question>>(stream, options);
+            Questions = questions ?? new List<Question>();
+            UserAnswers = new int[Questions.Count];
+            Array.Fill(UserAnswers, -1);
         }
     }
 }
