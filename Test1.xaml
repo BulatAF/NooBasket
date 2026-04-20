@@ -5,10 +5,10 @@
              Title="Test1">
     <VerticalStackLayout Spacing="20" Padding="10" HorizontalOptions="Center" >
         <Label x:Name="Text" FontSize="30"/>
-        <Button x:Name="Num1" Clicked="QuestionsClick" WidthRequest="200"/>
-        <Button x:Name="Num2" Clicked="QuestionsClick" WidthRequest="200"/>
-        <Button x:Name="Num3" Clicked="QuestionsClick" WidthRequest="200"/>
-        <Button x:Name="Num4" Clicked="QuestionsClick" WidthRequest="200"/>
+        <Button x:Name="Num1" Clicked="QuestionsClick" WidthRequest="200" BorderWidth="4"/>
+        <Button x:Name="Num2" Clicked="QuestionsClick" WidthRequest="200" BorderWidth="4"/>
+        <Button x:Name="Num3" Clicked="QuestionsClick" WidthRequest="200" BorderWidth="4"/>
+        <Button x:Name="Num4" Clicked="QuestionsClick" WidthRequest="200" BorderWidth="4"/>
         <Label x:Name="AnswerText" FontSize="25"/>
         <Button x:Name="NextButton"
                 Clicked="NextPage"

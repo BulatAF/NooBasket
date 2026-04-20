@@ -53,7 +53,7 @@ public partial class Test1 : ContentPage
     }
     private void QuestionsClick(object sender, EventArgs e)
     {
-        // Если ни разу не нажимали, сверяем ответ с правильным и меняем цвет 
+        // Если ни разу не нажимали, сверяем ответ с правильным и меняем цвет
         if (!isClicked)
         {
             Button button = (Button)sender;
@@ -64,11 +64,26 @@ public partial class Test1 : ContentPage
             }
             else
             {
+                // Меняем цвет обводки у правильного ответа
                 button.BackgroundColor = Colors.Red;
+                MoveBorderColor();
             }
             AnswerText.Text = engine.Questions[_numTest].AnswerText;
         }
         isClicked = true;
+    }
+
+    // Функция смены обводки при не правильном ответе
+    private void MoveBorderColor()
+    {
+        if (Num1.Text == _correctAnswer)
+            Num1.BorderColor = Colors.Green;
+        if (Num2.Text == _correctAnswer)
+            Num2.BorderColor = Colors.Green;
+        if (Num3.Text == _correctAnswer)
+            Num3.BorderColor = Colors.Green;
+        if (Num4.Text == _correctAnswer)
+            Num4.BorderColor = Colors.Green;
     }
 
     private async void NextPage(object sender, EventArgs e)
