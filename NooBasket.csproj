@@ -72,12 +72,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiAsset Update="Resources\Raw\Progress.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </MauiAsset>
 	  <MauiAsset Update="Resources\Raw\Topic1.json">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </MauiAsset>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="ItogPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="MenuTests.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
