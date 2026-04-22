@@ -6,15 +6,15 @@
     <ScrollView Orientation="Vertical" Padding="30">
         <StackLayout>
             <Button Text="Назад" 
-                 Clicked="OnGoToMainPage"
+                 Command="{Binding GoToMainCommand}"
                 Margin="20"/>
 
             <Button Text="Тема 1. Общая информация об игре" 
-                Clicked="OnGoToTopic1Page"
+                Command="{Binding GoToTopic1Command}"
                 Margin="20"/>
 
             <Button Text="Тема 2. Площадка" 
-                Clicked="OnGoToTopic2Page"
+                Command="{Binding GoToTopic2Command}"
                 Margin="20"/>
         </StackLayout>        
     </ScrollView>

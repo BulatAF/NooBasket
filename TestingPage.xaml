@@ -6,7 +6,7 @@
     <StackLayout Orientation="Vertical" Spacing="30" Padding="30">
 
         <Button Text="Назад" 
-        Clicked="OnGoToMainPage"
+        Command="{Binding GoToMainCommand}"
         />
 
         <Button Text="Тест 1" />

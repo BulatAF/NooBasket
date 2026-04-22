@@ -9,9 +9,4 @@ public partial class TestingPage : ContentPage
 		InitializeComponent();
         BindingContext = new TestingViewModel();
     }
-
-    private async void OnGoToMainPage(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync("//MainPage");
-    }
 }

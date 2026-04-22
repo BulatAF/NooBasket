@@ -2,35 +2,28 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NooBasket.MainPage">
-
-    <!-- Grid с 3 строками: верх, растягиваемая середина, низ -->
-    <Grid RowDefinitions="Auto, *, Auto" Padding="20">
-
-        <!-- ВЕРХ: заголовок и две основные кнопки -->
-        <VerticalStackLayout Grid.Row="0" Spacing="15" HorizontalOptions="Center">
-
-            <Label Text="Добро пожаловать в NooBasket!" 
-                   FontSize="24"
-                   HorizontalTextAlignment="Center"
-                   Padding="0,0,0,20"/>
+    <ScrollView>
+        <StackLayout Orientation="Vertical" Padding="30">
+            <Label Text="{Binding WelcomeMessage}" 
+            FontSize="24"
+            HorizontalOptions="Center"
+            VerticalTextAlignment="Center"
+            HorizontalTextAlignment="Center"
+            Padding="20"/>
 
             <Button Text="Пройти обучение" 
-                    Clicked="OnLearningClicked"
-                    Margin="0,5"/>
+             Command="{Binding GoToEducationCommand}"
+             Margin="20"
+             />
 
             <Button Text="Пройти тесты" 
-                    Clicked="OnTestsClicked"
-                    Margin="0,5"/>
-        </VerticalStackLayout>
+             Command="{Binding GoToTestingCommand}"
+             Margin="20"/>
 
-        <!-- СЕРЕДИНА: пустая, просто расталкивает низ -->
-        <!-- Ничего не добавляем -->
-
-        <!-- НИЗ: кнопка поддержки, прижата к низу -->
-        <Button Grid.Row="2"
-                Text="Обратиться в техподдержку"
-                Clicked="OnSupportClicked"
-                HorizontalOptions="Center"
-                Margin="0,20"/>
-    </Grid>
+            <Button Text="Обратится в техподдержку"
+             Command="{Binding ContactSupportCommand}"
+             HorizontalOptions="End"
+             Margin="20"/>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>
