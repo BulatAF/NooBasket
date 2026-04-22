@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NooBasket.ItogPage"
+             Title="ItogPage">
+    <VerticalStackLayout>
+        <Label 
+            Text="Вы прошли тест на"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Label x:Name="Persent" HorizontalOptions="Center"/>
+        <Label Text="Количество правильных ответов"/>
+        <Label x:Name="NumOfCorrect" HorizontalOptions="Center"/>
+        <Button Text="Выход" Clicked="GoToMenu"/>
+    </VerticalStackLayout>
+</ContentPage>

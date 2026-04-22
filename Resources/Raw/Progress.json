@@ -1,0 +1,17 @@
+{
+    "Topic1.json": {
+        "NumberOfCorrect": 0,
+        "NumberOfAll": 0,
+        "Answers": [ 0, 0, 0, 0 ]
+    },
+    "Topic2.json": {
+        "NumberOfCorrect": 0,
+        "NumberOfAll": 0,
+        "Answers": [ 0, 0, 0, 0 ]
+    },
+    "Topic3.json": {
+        "NumberOfCorrect": 0,
+        "NumberOfAll": 0,
+        "Answers": [ 0, 0, 0, 0 ]
+    }
+}
