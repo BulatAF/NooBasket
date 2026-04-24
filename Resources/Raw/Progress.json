@@ -13,5 +13,25 @@
         "NumberOfCorrect": 0,
         "NumberOfAll": 0,
         "Answers": [ 0, 0, 0, 0 ]
+    },
+    "Topic4.json": {
+        "NumberOfCorrect": 0,
+        "NumberOfAll": 0,
+        "Answers": [ 0, 0, 0, 0 ]
+    },
+    "Topic5.json": {
+        "NumberOfCorrect": 0,
+        "NumberOfAll": 0,
+        "Answers": [ 0, 0, 0, 0 ]
+    },
+    "Topic6.json": {
+        "NumberOfCorrect": 0,
+        "NumberOfAll": 0,
+        "Answers": [ 0, 0, 0, 0 ]
+    },
+    "Topic7.json": {
+        "NumberOfCorrect": 0,
+        "NumberOfAll": 0,
+        "Answers": [ 0, 0, 0, 0 ]
     }
 }

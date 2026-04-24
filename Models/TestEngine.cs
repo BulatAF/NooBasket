@@ -23,8 +23,30 @@ namespace NooBasket
             Questions = await JsonSerializer.DeserializeAsync<List<Question>>(stream, options)
                         ?? new List<Question>();
 
-            // ИСПРАВЛЕНИЕ: Читаем прогресс через глобальный метод (из AppData)
+            // Читаем прогресс через глобальный метод (из AppData)
             Results = await LoadGlobalProgress();
+
+            // Если для этого теста уже есть запись, проверяем размер массива Answers
+            if (Results.ContainsKey(nameJSON))
+            {
+                var currentResult = Results[nameJSON];
+
+                // Если массив null или его длина не совпадает с количеством вопросов
+                if (currentResult.Answers == null || currentResult.Answers.Length != Questions.Count)
+                {
+                    // Создаем новый массив правильной длины
+                    var correctedAnswers = new int[Questions.Count];
+
+                    // Если там были какие-то старые ответы, копируем их
+                    if (currentResult.Answers != null)
+                    {
+                        int lengthToCopy = Math.Min(currentResult.Answers.Length, Questions.Count);
+                        Array.Copy(currentResult.Answers, correctedAnswers, lengthToCopy);
+                    }
+
+                    currentResult.Answers = correctedAnswers;
+                }
+            }
         }
 
         public async Task<Dictionary<string, TestResult>> LoadGlobalProgress()

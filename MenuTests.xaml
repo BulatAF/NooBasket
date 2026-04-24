@@ -14,5 +14,6 @@
         <Button Text="Тема 4" Clicked="Test1"/>
         <Button Text="Тема 5" Clicked="Test1"/>
         <Button Text="Тема 6" Clicked="Test1"/>
+        <Button Text="Тема 7" Clicked="Test1"/>
     </VerticalStackLayout>
 </ContentPage>

@@ -29,10 +29,9 @@ public partial class Test1 : ContentPage
 
         if (engine.Results != null && !engine.Results.ContainsKey(_nameJSON))
         {
-            engine.Results[_nameJSON] = new TestResult 
+            engine.Results[_nameJSON] = new TestResult
             { Answers = new int[engine.Questions!.Count] };
         }
-
         //if (_numTest == 0 && engine.Results != null && engine.Questions != null)
         //{
         //    // 1. Проверяем, есть ли запись в словаре. Если нет — создаем.
@@ -74,6 +73,17 @@ public partial class Test1 : ContentPage
 
         AnswerText.Text = "Выбирите вариант ответа";
 
+        if (engine.Questions?[_numTest].Image != null)
+        {
+            QuestionImage.Source = engine.Questions?[_numTest].Image;
+            QuestionImage.IsVisible = true;
+        }
+        else
+        {
+            QuestionImage.IsVisible = false;
+            QuestionImage.Source = null; // Обязательно очищаем
+        }
+
         // Кнопка перехода между сраницами
         if (_numTest + 1 == engine.Questions.Count)
             NextButton.Text = "Выход";
@@ -96,6 +106,7 @@ public partial class Test1 : ContentPage
             }
             else
             {
+                button.BackgroundColor = Colors.Red;
                 currentResults.Answers[_numTest] = 0;
                 // Меняем цвет обводки у правильного ответа
                 button.BackgroundColor = Colors.Red;
@@ -125,7 +136,7 @@ public partial class Test1 : ContentPage
     private async void NextPage(object sender, EventArgs e)
     {
         // Переход к следующей странице при наличии тестового вопроса, иначе выход в меню
-        if (_numTest + 1 == engine.Questions?.Count)
+        if (_numTest + 1 == engine!.Questions?.Count)
         {
             await Navigation.PushAsync(new ItogPage(_nameJSON));
         }

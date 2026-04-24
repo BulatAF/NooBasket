@@ -9,6 +9,7 @@ namespace NooBasket.Models
     class Question
     {
         public string Text { get; set; }
+        public string? Image { get; set; }
         public string[] Various { get; set; }
         public string AnswerText { get; set; }
         public Question()
