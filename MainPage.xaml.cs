@@ -12,5 +12,10 @@ namespace NooBasket
         {
             await Shell.Current.GoToAsync("//MenuTests");
         }
+
+        private async void GoToStatistic(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("//Statistics");
+        }
     }
 }
