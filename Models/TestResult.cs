@@ -10,7 +10,7 @@ namespace NooBasket.Models
     {
         public int NumberOfCorrect { get; set; }
         public int NumberOfAll { get; set; }
-        public double Percent => (double)NumberOfCorrect/NumberOfAll * 100;
+        public double Percent => NumberOfAll > 0 ? (double)NumberOfCorrect / NumberOfAll*100 : 0;
         public int[] Answers {  get; set; }
         public TestResult()
         {

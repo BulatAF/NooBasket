@@ -3,14 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NooBasket.ItogPage"
              Title="ItogPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Вы прошли тест на"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        <Label x:Name="Persent" HorizontalOptions="Center"/>
-        <Label Text="Количество правильных ответов"/>
-        <Label x:Name="NumOfCorrect" HorizontalOptions="Center"/>
-        <Button Text="Выход" Clicked="GoToMenu"/>
+    <VerticalStackLayout Padding="10" Spacing="20">
+        <HorizontalStackLayout HorizontalOptions="Center" Padding="10" Spacing="20">
+            <Label 
+                Text="Вы прошли тест на  "
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                FontSize="30"/>
+            <Label x:Name="Persent" HorizontalOptions="Center"
+                   FontSize="30"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout HorizontalOptions="Center" Padding="10" Spacing="20">
+            <Label Text="Количество правильных ответов:"
+                   FontSize="30"
+                   HorizontalOptions="Center"/>
+            <Label x:Name="NumOfCorrect" HorizontalOptions="Center" FontSize="30"/>
+        </HorizontalStackLayout>
+        <Button Text="Выход" Clicked="GoToMenu"
+                WidthRequest="120"/>
     </VerticalStackLayout>
 </ContentPage>

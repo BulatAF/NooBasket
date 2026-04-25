@@ -27,15 +27,13 @@ namespace NooBasket
             Results = await LoadGlobalProgress();
 
             // Если для этого теста уже есть запись, проверяем размер массива Answers
-            if (Results.ContainsKey(nameJSON))
-            {
-                var currentResult = Results[nameJSON];
+            TestResult currentResult = Results[nameJSON];
 
                 // Если массив null или его длина не совпадает с количеством вопросов
                 if (currentResult.Answers == null || currentResult.Answers.Length != Questions.Count)
                 {
                     // Создаем новый массив правильной длины
-                    var correctedAnswers = new int[Questions.Count];
+                    int[] correctedAnswers = new int[Questions.Count];
 
                     // Если там были какие-то старые ответы, копируем их
                     if (currentResult.Answers != null)
@@ -47,12 +45,11 @@ namespace NooBasket
                     currentResult.Answers = correctedAnswers;
                 }
             }
-        }
 
         public async Task<Dictionary<string, TestResult>> LoadGlobalProgress()
         {
             string targetFile = Path.Combine(FileSystem.AppDataDirectory, "Progress.json");
-            var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            JsonSerializerOptions options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
             string jsonText;
 
             // ЕСЛИ ФАЙЛ УЖЕ ЕСТЬ В ПАПКЕ ДАННЫХ — ЧИТАЕМ ЕГО
@@ -63,8 +60,8 @@ namespace NooBasket
             // ЕСЛИ НЕТ (ПЕРВЫЙ ЗАПУСК) — БЕРЕМ ИЗ ПАКЕТА
             else
             {
-                using var stream = await FileSystem.Current.OpenAppPackageFileAsync("Progress.json");
-                using var reader = new StreamReader(stream);
+                using Stream stream = await FileSystem.Current.OpenAppPackageFileAsync("Progress.json");
+                using StreamReader reader = new (stream);
                 jsonText = await reader.ReadToEndAsync();
 
                 // Сразу сохраняем его в AppData, чтобы файл там появился

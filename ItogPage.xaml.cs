@@ -20,14 +20,11 @@ public partial class ItogPage : ContentPage
     {
         base.OnAppearing();
         _results = await _engine.LoadGlobalProgress();
-        if (_results != null && _results.ContainsKey(_nameJSON))
-        {
-            var stats = _results[_nameJSON];
+        var stats = _results[_nameJSON];
 
-            // Выводим данные (F1 — один знак после запятой)
-            Persent.Text = $"{stats.Percent:F1}%";
-            NumOfCorrect.Text = $"{stats.NumberOfCorrect} из {stats.NumberOfAll}";
-        }
+        // Выводим данные (F2 — два знака после запятой)
+        Persent.Text = $"{stats.Percent:F2}%";
+        NumOfCorrect.Text = $"{stats.NumberOfCorrect} из {stats.NumberOfAll}";
     }
     private async void GoToMenu(object sender, EventArgs e)
     {

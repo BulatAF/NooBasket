@@ -32,23 +32,32 @@ public partial class Test1 : ContentPage
             engine.Results[_nameJSON] = new TestResult
             { Answers = new int[engine.Questions!.Count] };
         }
-        //if (_numTest == 0 && engine.Results != null && engine.Questions != null)
-        //{
-        //    // 1. Проверяем, есть ли запись в словаре. Если нет — создаем.
-        //    if (!engine.Results.ContainsKey(_nameJSON))
-        //    {
-        //        engine.Results[_nameJSON] = new TestResult();
-        //    }
 
-        //    // 2. Теперь безопасно обнуляем
-        //    var current = engine.Results[_nameJSON];
-        //    current.Answers = new int[engine.Questions.Count];
-        //    current.NumberOfAll = 0;
-        //    current.NumberOfCorrect = 0;
 
-        //    // 3. Сохраняем
-        //    await engine.SaveGlobalProgress(engine.Results);
-        //}
+        //
+        if (_numTest == 0)
+            {
+            bool answer = await DisplayAlert("Внимание", "При повторном прорешивании данные сбросятся. Продолжить?", "Нет", "Да");
+            if (answer)
+            {
+                await Navigation.PopAsync(); // Вернуться в меню
+            }
+            // Создаем новый чистый результат для этой темы
+            engine.Results[_nameJSON] = new TestResult
+            {
+                Answers = new int[engine.Questions!.Count],
+                NumberOfAll = 0,
+                NumberOfCorrect = 0
+            };
+
+                // Сразу сохраняем "чистый лист" в память/файл
+            await engine.SaveGlobalProgress(engine.Results);
+        }
+        else if (!engine.Results.ContainsKey(_nameJSON))
+        {
+                // Если это не первый вопрос, а данных почему-то нет (защита от краша)
+            engine.Results[_nameJSON] = new TestResult { Answers = new int[engine.Questions!.Count] };
+        }
 
         Text.Text = engine.Questions?[_numTest].Text;
         
@@ -138,9 +147,16 @@ public partial class Test1 : ContentPage
         // Переход к следующей странице при наличии тестового вопроса, иначе выход в меню
         if (_numTest + 1 == engine!.Questions?.Count)
         {
-            await Navigation.PushAsync(new ItogPage(_nameJSON));
+            bool last = await DisplayAlert("Выход", "Завершить прохождение теста?", "Да", "Нет");
+            if (last)
+                await Navigation.PushAsync(new ItogPage(_nameJSON));
         }
         else
             await Navigation.PushAsync(new Test1(_numTest + 1, _nameJSON));
+    }
+    protected override bool OnBackButtonPressed()
+    {
+        // Возвращаем true, чтобы просто "проглотить" нажатие и ничего не делать
+        return true;
     }
 }
