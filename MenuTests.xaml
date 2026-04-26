@@ -23,6 +23,10 @@
                     WidthRequest="300" />
             <Button Text="Тема 7" Clicked="Test1"
                     WidthRequest="300" />
+            <Button Text="Назад"
+                    Clicked="GoToBack"
+                    Margin="0, 40, 0, 0"
+                    WidthRequest="120"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

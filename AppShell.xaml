@@ -15,4 +15,9 @@
         Title="Меню тестов"
         ContentTemplate="{DataTemplate local:MenuTests}"
         Route="MenuTests" />
+    
+    <ShellContent
+        Title="Статистика"
+        ContentTemplate="{DataTemplate local:Statistics}"
+        Route="Statistics" />
 </Shell>

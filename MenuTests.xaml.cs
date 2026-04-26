@@ -27,4 +27,9 @@ public partial class MenuTests : ContentPage
         if (button.Text == "Тема 7")
             await Navigation.PushAsync(new Test1(0, "Topic7.json"));
     }
+
+    private async void GoToBack(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//MainPage");
+    }
 }

@@ -37,21 +37,22 @@ public partial class Test1 : ContentPage
         //
         if (_numTest == 0)
             {
-            bool answer = await DisplayAlert("Внимание", "При повторном прорешивании данные сбросятся. Продолжить?", "Нет", "Да");
-            if (answer)
-            {
-                await Navigation.PopAsync(); // Вернуться в меню
-            }
-            // Создаем новый чистый результат для этой темы
-            engine.Results[_nameJSON] = new TestResult
-            {
-                Answers = new int[engine.Questions!.Count],
-                NumberOfAll = 0,
-                NumberOfCorrect = 0
-            };
+                bool answer = await DisplayAlert("Внимание", "При повторном прорешивании данные сбросятся. Продолжить?", "Нет", "Да");
+                if (answer)
+                {
+                    await Navigation.PopAsync(); // Вернуться в меню
+                    return;
+                }
+                // Создаем новый чистый результат для этой темы
+                engine.Results[_nameJSON] = new TestResult
+                {
+                    Answers = [10],
+                    NumberOfAll = 0,
+                    NumberOfCorrect = 0
+                };
 
                 // Сразу сохраняем "чистый лист" в память/файл
-            await engine.SaveGlobalProgress(engine.Results);
+                await engine.SaveGlobalProgress(engine.Results);
         }
         else if (!engine.Results.ContainsKey(_nameJSON))
         {
