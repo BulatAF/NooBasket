@@ -1,15 +1,41 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NooBasket.ViewModels
 {
     public partial class EducationViewModel : ObservableObject
     {
+        [ObservableProperty]
+        private List<Topic> _topics = new List<Topic>();
+
+        public EducationViewModel()
+        {
+            LoadTopics();
+        }
+
+        private async void LoadTopics()
+        {
+            try
+            {
+                List<Topic> tempList = new List<Topic>();
+
+                for (int i = 1; i <= 19; i++)
+                {
+                    Topic topic = await EducationTopicsLoader.GetTopicAsync(i);
+                    if (topic != null)
+                    {
+                        tempList.Add(topic);
+                    }
+                }
+
+                Topics = tempList;
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Ошибка", ex.Message, "OK");
+            }
+        }
+
         [RelayCommand]
         private async Task GoToMainAsync()
         {
@@ -17,26 +43,16 @@ namespace NooBasket.ViewModels
         }
 
         [RelayCommand]
-        private async Task GoToTopic1Async()
+        public async Task GoToTopicAsync(Topic topic)
         {
-
-            await Shell.Current.GoToAsync("//Topic1Page");
-        }
-
-        [RelayCommand]
-        private async Task GoToTopic2Async()
-        {
-            if (TopicAvailable.IsAvailable(2))
+            try
             {
-                await Shell.Current.GoToAsync("//Topic2Page");
+                await Shell.Current.GoToAsync($"///TopicPage?topicId={topic.Id}");
             }
-            else
+            catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Тема закрыта",
-                    "Сначала завершите Тему 1",
-                    "Понятно");
+                await Shell.Current.DisplayAlert("Ошибка навигации", ex.Message, "OK");
             }
         }
-
     }
 }

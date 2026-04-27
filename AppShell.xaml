@@ -20,21 +20,9 @@
         Title="Тесты"
         ContentTemplate="{DataTemplate local:TestingPage}"
         Route="TestingPage" />
-
+    
     <ShellContent
-        Title="Тема 1"
-        ContentTemplate="{DataTemplate local:Topic1Page}"
-        Route="Topic1Page" />
-
-    <ShellContent
-        Title="Тема 1 Тест"
-        ContentTemplate="{DataTemplate local:Topic1TestPage}"
-        Route="Topic1TestPage" />
-
-    <ShellContent
-        Title="Тема 2"
-        ContentTemplate="{DataTemplate local:Topic2Page}"
-        Route="Topic2Page" />
-
-
+        Title="Тема"
+        ContentTemplate="{DataTemplate local:TopicPage}"
+        Route="TopicPage" />
 </Shell>

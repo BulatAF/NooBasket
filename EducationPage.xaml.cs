@@ -5,8 +5,8 @@ namespace NooBasket;
 public partial class EducationPage : ContentPage
 {
     public EducationPage()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         BindingContext = new EducationViewModel();
     }
 }

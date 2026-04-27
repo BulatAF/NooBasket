@@ -10,7 +10,9 @@
             VerticalTextAlignment="Center"
             HorizontalTextAlignment="Center"
             Padding="20"/>
-
+            
+            <!--Command свойство кнопки, которое определяет какой метод выполнится при нажатии-->
+            <!--Binding привязка данных-->
             <Button Text="Пройти обучение" 
              Command="{Binding GoToEducationCommand}"
              Margin="20"

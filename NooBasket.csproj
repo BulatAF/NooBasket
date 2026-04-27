@@ -59,23 +59,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Resources\Raw\LearningTopics.cs" />
-	  <Compile Remove="Resources\Raw\LearningTopicsLoader.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.5" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Compile Update="Topic1Page.xaml.cs">
-	    <DependentUpon>Topic1Page.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="Topic1TestPage.xaml.cs">
-	    <DependentUpon>Topic1TestPage.xaml</DependentUpon>
-	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -85,13 +71,7 @@
 	  <MauiXaml Update="TestingPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Topic1Page.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Topic1TestPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Topic2Page.xaml">
+	  <MauiXaml Update="TopicPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

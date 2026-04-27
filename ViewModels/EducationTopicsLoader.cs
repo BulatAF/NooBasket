@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Text.Json;
+using System.Threading.Tasks;
 
-namespace NooBasket.Resources.Raw
+namespace NooBasket.ViewModels
 {
-    public static class LearningTopicsLoader
+    public class EducationTopicsLoader
     {
-        private static LearningTopics? _allTopics;
+        private static EducationTopics? _allTopics;
         // Task - означает что функция точно вернет какой то результат когда завершится
         // async - помечает что программа может продолжать работу пока функция еще не завершилась
         // await - пока файл загружается программа не ждет а продолжает выполнять другие действия
@@ -17,10 +17,10 @@ namespace NooBasket.Resources.Raw
         {
             if (_allTopics != null) return;//если файл уже загрузили раньше
 
-            using Stream stream = await FileSystem.OpenAppPackageFileAsync("LearningTopics.json");
+            using Stream stream = await FileSystem.OpenAppPackageFileAsync("EducationTopics.json");
             using StreamReader reader = new StreamReader(stream, Encoding.UTF8);
             string jsonContent = await reader.ReadToEndAsync();// читаем из файла и преобразуем все в строку
-            _allTopics = JsonSerializer.Deserialize<LearningTopics>(jsonContent);// берем строку и с помощью Deserialize приводим ее к типу 
+            _allTopics = JsonSerializer.Deserialize<EducationTopics>(jsonContent);// берем строку и с помощью Deserialize приводим ее к типу 
         }
 
 
