@@ -27,15 +27,8 @@ public partial class Test1 : ContentPage
         engine = new TestEngine();
         await engine.LoadFromJson(_nameJSON);
 
-        if (engine.Results != null && !engine.Results.ContainsKey(_nameJSON))
-        {
-            engine.Results[_nameJSON] = new TestResult
-            { Answers = new int[engine.Questions!.Count] };
-        }
-
-
         //
-        if (_numTest == 0)
+        if (_numTest == 0 && engine.Results.ContainsKey(_nameJSON) && engine.Results[_nameJSON].NumberOfAll > 0)
             {
                 bool answer = await DisplayAlert("Внимание", "При повторном прорешивании данные сбросятся. Продолжить?", "Нет", "Да");
                 if (answer)
@@ -53,11 +46,6 @@ public partial class Test1 : ContentPage
 
                 // Сразу сохраняем "чистый лист" в память/файл
                 await engine.SaveGlobalProgress(engine.Results);
-        }
-        else if (!engine.Results.ContainsKey(_nameJSON))
-        {
-                // Если это не первый вопрос, а данных почему-то нет (защита от краша)
-            engine.Results[_nameJSON] = new TestResult { Answers = new int[engine.Questions!.Count] };
         }
 
         Text.Text = engine.Questions?[_numTest].Text;
