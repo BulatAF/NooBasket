@@ -39,7 +39,7 @@ public partial class Test1 : ContentPage
                 // Создаем новый чистый результат для этой темы
                 engine.Results[_nameJSON] = new TestResult
                 {
-                    Answers = [10],
+                    Answers = new int[engine.Questions.Count],
                     NumberOfAll = 0,
                     NumberOfCorrect = 0
                 };
@@ -47,8 +47,12 @@ public partial class Test1 : ContentPage
                 // Сразу сохраняем "чистый лист" в память/файл
                 await engine.SaveGlobalProgress(engine.Results);
         }
+        else
+        {
 
-        Text.Text = engine.Questions?[_numTest].Text;
+        }
+
+            Text.Text = engine.Questions?[_numTest].Text;
         
         string?[] var = engine.Questions![_numTest].Various;
 
