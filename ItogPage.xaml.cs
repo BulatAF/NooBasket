@@ -30,4 +30,9 @@ public partial class ItogPage : ContentPage
     {
         await Shell.Current.GoToAsync("//MenuTests");
     }
+    protected override bool OnBackButtonPressed()
+    {
+        // Возвращаем true, чтобы просто "проглотить" нажатие и ничего не делать
+        return true;
+    }
 }
