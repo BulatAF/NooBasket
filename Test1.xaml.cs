@@ -27,7 +27,6 @@ public partial class Test1 : ContentPage
         engine = new TestEngine();
         await engine.LoadFromJson(_nameJSON);
 
-        //
         if (_numTest == 0 && engine.Results.ContainsKey(_nameJSON) && engine.Results[_nameJSON].NumberOfAll > 0)
             {
                 bool answer = await DisplayAlert("Внимание", "При повторном прорешивании данные сбросятся. Продолжить?", "Нет", "Да");
@@ -47,12 +46,8 @@ public partial class Test1 : ContentPage
                 // Сразу сохраняем "чистый лист" в память/файл
                 await engine.SaveGlobalProgress(engine.Results);
         }
-        else
-        {
 
-        }
-
-            Text.Text = engine.Questions?[_numTest].Text;
+        Text.Text = engine.Questions?[_numTest].Text;
         
         string?[] var = engine.Questions![_numTest].Various;
 
