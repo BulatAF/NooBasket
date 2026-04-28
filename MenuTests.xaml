@@ -23,6 +23,30 @@
                     WidthRequest="300" />
             <Button Text="Тема 7" Clicked="Test1"
                     WidthRequest="300" />
+            <Button Text="Тема 8" Clicked="Test1"
+                    WidthRequest="300"/>
+            <Button Text="Тема 9" Clicked="Test1"
+                    WidthRequest="300" />
+            <Button Text="Тема 10" Clicked="Test1"
+                    WidthRequest="300" />
+            <Button Text="Тема 11" Clicked="Test1"
+                    WidthRequest="300"/>
+            <Button Text="Тема 12" Clicked="Test1"
+                    WidthRequest="300"/>
+            <Button Text="Тема 13" Clicked="Test1"
+                    WidthRequest="300"/>
+            <Button Text="Тема 14" Clicked="Test1"
+                    WidthRequest="300"/>
+            <Button Text="Тема 15" Clicked="Test1"
+                    WidthRequest="300"/>
+            <Button Text="Тема 16" Clicked="Test1"
+                    WidthRequest="300"/>
+            <Button Text="Тема 17" Clicked="Test1"
+                    WidthRequest="300"/>
+            <Button Text="Тема 18" Clicked="Test1"
+                    WidthRequest="300"/>
+            <Button Text="Тема 19" Clicked="Test1"
+                    WidthRequest="300"/>
             <Button Text="Назад"
                     Clicked="GoToBack"
                     Margin="0, 40, 0, 0"

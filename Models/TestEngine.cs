@@ -16,15 +16,28 @@ namespace NooBasket
 
         public async Task LoadFromJson(string nameJSON)
         {
-            var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+            JsonSerializerOptions options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
 
             // Читаем вопросы (они всегда в пакете, только чтение)
-            using var stream = await FileSystem.Current.OpenAppPackageFileAsync(nameJSON);
+            using Stream stream = await FileSystem.Current.OpenAppPackageFileAsync(nameJSON);
             Questions = await JsonSerializer.DeserializeAsync<List<Question>>(stream, options)
                         ?? new List<Question>();
 
             // Читаем прогресс через глобальный метод (из AppData)
             Results = await LoadGlobalProgress();
+
+            //Если в нет никаких данных о тесте
+            if (!Results.ContainsKey(nameJSON))
+            {
+                Results[nameJSON] = new TestResult
+                {
+                    Answers = new int[Questions.Count],
+                    NumberOfAll = 0,
+                    NumberOfCorrect = 0
+                };
+
+                await SaveGlobalProgress(Results);
+            }
 
             // Если для этого теста уже есть запись, проверяем размер массива Answers
             TestResult currentResult = Results[nameJSON];

@@ -27,7 +27,6 @@ public partial class Test1 : ContentPage
         engine = new TestEngine();
         await engine.LoadFromJson(_nameJSON);
 
-        //
         if (_numTest == 0 && engine.Results.ContainsKey(_nameJSON) && engine.Results[_nameJSON].NumberOfAll > 0)
             {
                 bool answer = await DisplayAlert("Внимание", "При повторном прорешивании данные сбросятся. Продолжить?", "Нет", "Да");
@@ -39,7 +38,7 @@ public partial class Test1 : ContentPage
                 // Создаем новый чистый результат для этой темы
                 engine.Results[_nameJSON] = new TestResult
                 {
-                    Answers = [10],
+                    Answers = new int[engine.Questions.Count],
                     NumberOfAll = 0,
                     NumberOfCorrect = 0
                 };
