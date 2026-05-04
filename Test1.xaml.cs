@@ -14,7 +14,7 @@ public partial class Test1 : ContentPage
     string? _correctAnswer;
 
     public Test1(int numTest = 0, string nameJSON = "")
-	{
+    {
         _nameJSON = nameJSON;
         _numTest = numTest;
 
@@ -135,9 +135,7 @@ public partial class Test1 : ContentPage
         // Переход к следующей странице при наличии тестового вопроса, иначе выход в меню
         if (_numTest + 1 == engine!.Questions?.Count)
         {
-            bool last = await DisplayAlert("Выход", "Завершить прохождение теста?", "Да", "Нет");
-            if (last)
-                await Navigation.PushAsync(new ItogPage(_nameJSON));
+            await Navigation.PushAsync(new ItogPage(_nameJSON));
         }
         else
             await Navigation.PushAsync(new Test1(_numTest + 1, _nameJSON));
