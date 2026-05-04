@@ -7,7 +7,7 @@ namespace NooBasket
         public MainPage()
         {
             InitializeComponent();
-            BindingContext = new MainViewModel();
+            BindingContext = new MainPageViewModel();
         }      
     }
 

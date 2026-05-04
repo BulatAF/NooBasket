@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using NooBasket.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 namespace NooBasket.ViewModels
 {
     [QueryProperty(nameof(TopicId), "topicId")]
-    internal partial class TopicPageViewModel: ObservableObject
+    internal partial class EducationTopicPageViewModel: ObservableObject
     {
         [ObservableProperty]
         private string _title = ""; // заголовок темы
@@ -50,7 +51,7 @@ namespace NooBasket.ViewModels
         }
 
         [RelayCommand]
-        private async Task GoBack()
+        private async Task GoToEducationPage()
         {
             await Shell.Current.GoToAsync("//EducationPage");
 
@@ -59,7 +60,10 @@ namespace NooBasket.ViewModels
         [RelayCommand]
         private async Task GoToTest()
         {
-            await Shell.Current.DisplayAlert("Тест", "Тест пройден", "Ок");
+            if (_topicId > 0)
+            {
+                await Shell.Current.GoToAsync($"///TestingTopicPage?topicId={_topicId}");
+            }
         }
     }
 }

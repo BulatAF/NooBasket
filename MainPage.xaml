@@ -5,27 +5,30 @@
     <ScrollView>
         <StackLayout Orientation="Vertical" Padding="30">
             <Label Text="{Binding WelcomeMessage}" 
-            FontSize="24"
-            HorizontalOptions="Center"
-            VerticalTextAlignment="Center"
-            HorizontalTextAlignment="Center"
-            Padding="20"/>
-            
+                   FontSize="24"
+                   HorizontalOptions="Center"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   Padding="20"/>
+
             <!--Command свойство кнопки, которое определяет какой метод выполнится при нажатии-->
             <!--Binding привязка данных-->
             <Button Text="Пройти обучение" 
-             Command="{Binding GoToEducationCommand}"
-             Margin="20"
-             />
+                    Command="{Binding GoToEducationCommand}"
+                    Margin="20"/>
 
             <Button Text="Пройти тесты" 
-             Command="{Binding GoToTestingCommand}"
-             Margin="20"/>
+                    Command="{Binding GoToTestingCommand}"
+                    Margin="20"/>
+
+            <Button Text="Статистика тестов"
+                    Command="{Binding GoToStatisticsCommand}"
+                    Margin="20"/>
 
             <Button Text="Обратится в техподдержку"
-             Command="{Binding ContactSupportCommand}"
-             HorizontalOptions="End"
-             Margin="20"/>
+                    Command="{Binding ContactSupportCommand}"
+                    HorizontalOptions="End"
+                    Margin="20"/>
         </StackLayout>
     </ScrollView>
 </ContentPage>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NooBasket.StatisticsPage"
+             Title="Статистика">
+
+    <ScrollView Orientation="Vertical" Padding="20">
+        <StackLayout>
+            <Button Text="Назад" 
+                    Command="{Binding GoToMainCommand}"
+                    Margin="10"/>
+
+            <Label Text="Статистика"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="10"/>
+
+            <CollectionView ItemsSource="{Binding TopicsStats}"
+                           Margin="0,10,0,0">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout Margin="15">
+                            <Label Text="{Binding TopicTitle}"
+                                   FontSize="16"
+                                   FontAttributes="Bold"/>
+
+                            <Label Text="{Binding StatsText}"
+                                   FontSize="14"
+                                   TextColor="{Binding StatsColor}"/>
+
+
+                            <ProgressBar Progress="{Binding ProgressValue}"
+                                         HeightRequest="6"/>
+
+                            <BoxView HeightRequest="1" BackgroundColor="LightGray" Margin="0,10"/>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

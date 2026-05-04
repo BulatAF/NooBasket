@@ -7,6 +7,6 @@ public partial class EducationPage : ContentPage
     public EducationPage()
     {
         InitializeComponent();
-        BindingContext = new EducationViewModel();
+        BindingContext = new EducationPageViewModel();
     }
 }

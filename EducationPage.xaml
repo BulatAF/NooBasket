@@ -10,44 +10,19 @@
             <Button Text="Назад" 
                     Command="{Binding GoToMainCommand}"
                     Margin="20"/>
-
+            <!--CollectionView для отображения списка данных, ItemSource в качестве значения принимает коллекцию IEnumerable-->
             <CollectionView ItemsSource="{Binding Topics}">
                 <CollectionView.ItemTemplate>
+                    <!--свойство ItemsTemplate отвечает за установку шаблона отображения данных-->
                     <DataTemplate>
                         <Button Text="{Binding TitleWithID}" 
-                                Command="{Binding Source={x:Reference PageRoot}, Path=BindingContext.GoToTopicCommand}"
+                                Command="{Binding Source={x:Reference PageRoot}, Path=BindingContext.GoToEducationTopicCommand}"
                                 CommandParameter="{Binding .}" 
                                 Margin="20"/>
                     </DataTemplate>
+                    <!--CommandParameter="{Binding} привязывается к текущему обьекту (данные текущей темы)-->
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </StackLayout>
     </ScrollView>
 </ContentPage>
-    
-    <!--<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:NooBasket.ViewModels"
-             x:Class="NooBasket.EducationPage">
-
-    <ScrollView Orientation="Vertical" Padding="30">
-        <StackLayout>
-            <Button Text="Назад" 
-                    Command="{Binding GoToMainCommand}"
-                    Margin="20"/>
-            --><!--CollectionView для отображения списка данных, ItemSource в качестве значения принимает коллекцию IEnumerable--><!--
-            <CollectionView ItemsSource="{Binding Topics}">
-                <CollectionView.ItemTemplate>
-                    --><!--свойство ItemsTemplate отвечает за установку шаблона отображения данных--><!--
-                    <DataTemplate>
-                        <Button Text="{Binding TitleWithID}" 
-                                Command="{Binding GoToTopicCommand}"
-                                Margin="20"/>
-                    </DataTemplate>
-                    --><!--CommandParameter="{Binding} привязывается к текущему обьекту (данные текущей темы)--><!--
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </StackLayout>
-    </ScrollView>
-</ContentPage>-->
