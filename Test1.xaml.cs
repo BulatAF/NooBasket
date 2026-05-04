@@ -86,6 +86,8 @@ public partial class Test1 : ContentPage
             NextButton.Text = "Выход";
         else
             NextButton.Text = "Следующий";
+
+        this.Title = $"Вопрос {_numTest + 1} из {engine.Questions.Count}";
     }
     private async void QuestionsClick(object sender, EventArgs e)
     {
@@ -139,6 +141,24 @@ public partial class Test1 : ContentPage
         }
         else
             await Navigation.PushAsync(new Test1(_numTest + 1, _nameJSON));
+    }
+    private async void OnExitClicked(object sender, EventArgs e)
+    {
+        bool answer = await DisplayAlert("Внимание!", "При выходе из тестирования текущий прогресс будет сброшен! Выйти?", "Нет", "Да");
+        if (answer) return;
+
+        // Создаем новый чистый результат для этой темы
+        engine.Results[_nameJSON] = new TestResult
+        {
+            Answers = new int[engine.Questions.Count],
+            NumberOfAll = 0,
+            NumberOfCorrect = 0
+        };
+
+        // Сразу сохраняем "чистый лист" в память/файл
+        await engine.SaveGlobalProgress(engine.Results);
+
+        await Shell.Current.GoToAsync("//MenuTests");
     }
     protected override bool OnBackButtonPressed()
     {

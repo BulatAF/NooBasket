@@ -2,55 +2,82 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NooBasket.MenuTests"
-             Title="MenuTests">
+             Title="Меню тестов">
     <ScrollView>
-        <VerticalStackLayout Spacing="20" Padding="10" HorizontalOptions="Center">
-            <Label 
-                Text="Тесты по темам"
-                HorizontalOptions="Center"
-                FontSize="30"/>
+        <VerticalStackLayout Spacing="20" Padding="10" HorizontalOptions="Fill">
+            <Grid 
+                RowDefinitions="Auto" 
+                ColumnDefinitions="*, Auto, *"
+                ColumnSpacing="15">
+                <Button Text="Назад"
+                        HorizontalOptions="Start"
+                        Clicked="GoToBack"
+                        Grid.Column="0"
+                        HeightRequest="45"/>
+                <Label 
+                        Text="Тесты по темам"
+                        HorizontalOptions="Center"
+                        FontSize="30"
+                        Grid.Column="1"/>
+            </Grid>
+            
             <Button Text="Тема 1" Clicked="Test1"
-                    WidthRequest="300" />
+                    WidthRequest="300"
+                    HorizontalOptions="Center"/>
             <Button Text="Тема 2" Clicked="Test1"
-                    WidthRequest="300" />
+                    WidthRequest="300"
+                    HorizontalOptions="Center"/>
             <Button Text="Тема 3" Clicked="Test1"
-                    WidthRequest="300" />
+                    WidthRequest="300"
+                    HorizontalOptions="Center"/>
             <Button Text="Тема 4" Clicked="Test1"
-                    WidthRequest="300" />
+                    WidthRequest="300"
+                    HorizontalOptions="Center"/>
             <Button Text="Тема 5" Clicked="Test1"
-                    WidthRequest="300" />
+                    WidthRequest="300"
+                    HorizontalOptions="Center"/>
             <Button Text="Тема 6" Clicked="Test1"
-                    WidthRequest="300" />
+                    WidthRequest="300"
+                    HorizontalOptions="Center"/>
             <Button Text="Тема 7" Clicked="Test1"
-                    WidthRequest="300" />
+                    WidthRequest="300"
+                    HorizontalOptions="Center"/>
             <Button Text="Тема 8" Clicked="Test1"
-                    WidthRequest="300"/>
+                    WidthRequest="300"
+                    HorizontalOptions="Center"/>
             <Button Text="Тема 9" Clicked="Test1"
-                    WidthRequest="300" />
+                    WidthRequest="300" 
+                    HorizontalOptions="Center"/>
             <Button Text="Тема 10" Clicked="Test1"
-                    WidthRequest="300" />
+                    WidthRequest="300" 
+                    HorizontalOptions="Center"/>
             <Button Text="Тема 11" Clicked="Test1"
-                    WidthRequest="300"/>
+                    WidthRequest="300"
+                    HorizontalOptions="Center"/>
             <Button Text="Тема 12" Clicked="Test1"
-                    WidthRequest="300"/>
+                    WidthRequest="300"
+                    HorizontalOptions="Center"/>
             <Button Text="Тема 13" Clicked="Test1"
-                    WidthRequest="300"/>
+                    WidthRequest="300"
+                    HorizontalOptions="Center"/>
             <Button Text="Тема 14" Clicked="Test1"
-                    WidthRequest="300"/>
+                    WidthRequest="300"
+                    HorizontalOptions="Center"/>
             <Button Text="Тема 15" Clicked="Test1"
-                    WidthRequest="300"/>
+                    WidthRequest="300"
+                    HorizontalOptions="Center"/>
             <Button Text="Тема 16" Clicked="Test1"
-                    WidthRequest="300"/>
+                    WidthRequest="300"
+                    HorizontalOptions="Center"/>
             <Button Text="Тема 17" Clicked="Test1"
-                    WidthRequest="300"/>
+                    WidthRequest="300"
+                    HorizontalOptions="Center"/>
             <Button Text="Тема 18" Clicked="Test1"
-                    WidthRequest="300"/>
+                    WidthRequest="300"
+                    HorizontalOptions="Center"/>
             <Button Text="Тема 19" Clicked="Test1"
-                    WidthRequest="300"/>
-            <Button Text="Назад"
-                    Clicked="GoToBack"
-                    Margin="0, 40, 0, 0"
-                    WidthRequest="120"/>
+                    WidthRequest="300"
+                    HorizontalOptions="Center"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

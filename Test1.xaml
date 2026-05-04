@@ -2,12 +2,28 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NooBasket.Test1"
-             Title="Test1"
+             Title="Тестирование"
              NavigationPage.HasBackButton="False">
     <ScrollView>
-        <VerticalStackLayout Spacing="20" Padding="10" HorizontalOptions="Center" >
-            <Label x:Name="Text" FontSize="30"/>
-            
+        <VerticalStackLayout Spacing="20" Padding="10" HorizontalOptions="Fill" >
+            <Grid 
+                RowDefinitions="Auto" 
+                ColumnDefinitions="Auto, *, Auto"
+                ColumnSpacing="15">
+                <Button HorizontalOptions="Start"
+                        Text="Выход"
+                        Clicked="OnExitClicked"
+                        Grid.Column="0"
+                        HeightRequest="45"/>
+                <Label x:Name="Text" FontSize="30" HorizontalOptions="Center" Grid.Column="1"/>
+
+                <Button x:Name="NextButton"
+                        HorizontalOptions="End"
+                        Clicked="NextPage"
+                        HeightRequest="45"
+                        Grid.Column="2"/>
+            </Grid>
+
             <Image x:Name="QuestionImage" 
                 HeightRequest="200" 
                 IsVisible="False" 
@@ -18,30 +34,31 @@
                     WidthRequest="300" 
                     BorderWidth="4" 
                     HeightRequest="-1" 
-                    LineBreakMode="WordWrap"/>
+                    LineBreakMode="WordWrap"
+                    HorizontalOptions="Center"/>
             <Button x:Name="Num2" 
                     Clicked="QuestionsClick" 
                     WidthRequest="300" 
                     BorderWidth="4" 
                     HeightRequest="-1" 
-                    LineBreakMode="WordWrap"/>
+                    LineBreakMode="WordWrap"
+                    HorizontalOptions="Center"/>
             <Button x:Name="Num3" 
                     Clicked="QuestionsClick" 
                     WidthRequest="300" 
                     BorderWidth="4" 
                     HeightRequest="-1" 
-                    LineBreakMode="WordWrap"/>
+                    LineBreakMode="WordWrap"
+                    HorizontalOptions="Center"/>
             <Button x:Name="Num4" 
                     Clicked="QuestionsClick" 
                     WidthRequest="300" 
                     BorderWidth="4" 
                     HeightRequest="-1" 
-                    LineBreakMode="WordWrap"/>
-            <Label x:Name="AnswerText" FontSize="25"/>
-            <Button x:Name="NextButton"
-                    Clicked="NextPage"
-                    Margin="0, 40, 0, 0"
-                    WidthRequest="120"/>
+                    LineBreakMode="WordWrap"
+                    HorizontalOptions="Center"/>
+            <Label x:Name="AnswerText" FontSize="25"
+                   HorizontalOptions="Center"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
