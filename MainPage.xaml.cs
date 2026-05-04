@@ -1,24 +1,21 @@
-﻿namespace NooBasket
+﻿using System.Threading.Tasks;
+namespace NooBasket
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
-
         public MainPage()
         {
             InitializeComponent();
         }
 
-        private void OnCounterClicked(object? sender, EventArgs e)
+        private async void NextStr(object sender, EventArgs e)
         {
-            count -= 3;
+            await Shell.Current.GoToAsync("//MenuTests");
+        }
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+        private async void GoToStatistic(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("//Statistics");
         }
     }
 }
