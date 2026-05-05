@@ -7,8 +7,17 @@
     Title="NooBasket">
 
     <ShellContent
-        Title="Home"
+        Title="Главная"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
+    <ShellContent
+        Title="Меню тестов"
+        ContentTemplate="{DataTemplate local:MenuTests}"
+        Route="MenuTests" />
+    
+    <ShellContent
+        Title="Статистика"
+        ContentTemplate="{DataTemplate local:Statistics}"
+        Route="Statistics" />
 </Shell>

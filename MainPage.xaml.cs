@@ -1,3 +1,5 @@
+﻿using System.Threading.Tasks;
+namespace NooBasket
 ﻿namespace NooBasket;
 
 public partial class MainPage : ContentPage
@@ -14,6 +16,7 @@ public partial class MainPage : ContentPage
 
     private async void OnTestsClicked(object sender, EventArgs e)
     {
+        public MainPage()
         await Navigation.PushAsync(new TestsPage());
     }
 
@@ -24,6 +27,15 @@ public partial class MainPage : ContentPage
         {
             await Launcher.OpenAsync(tgLink);
         }
+
+        private async void NextStr(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("//MenuTests");
+        }
+
+        private async void GoToStatistic(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("//Statistics");
         catch (Exception ex)
         {
             await DisplayAlert("Ошибка", "Не удалось открыть Telegram номер тел. разработчика: +79922378745", "OK");
