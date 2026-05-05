@@ -11,3 +11,70 @@
                 WidthRequest="150"/>
     </VerticalStackLayout>
 </ContentPage>
+             x:Class="NooBasket.MainPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#FFD66C">
+
+    <ContentPage.Resources>
+        <Style x:Key="MenuButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#405CA3"/>
+            <Setter Property="TextColor" Value="#FFD66C"/>
+            <Setter Property="CornerRadius" Value="18"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="HeightRequest" Value="65"/>
+            <Setter Property="Padding" Value="16,0"/>
+            <Setter Property="Margin" Value="0,1"/>
+
+        <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Opacity" Value="1.0"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Opacity" Value="0.5"/>
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    
+    <Grid RowDefinitions="*, Auto, *" 
+          ColumnDefinitions="*"
+          Padding="20">
+
+        <VerticalStackLayout Grid.Row="1"
+                             Grid.Column="0"
+                             Spacing="10"
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center"
+                             MaximumWidthRequest="450">
+
+            <Label Text="NooBasket"
+                   TextColor="#405CA3" 
+                   FontSize="42" 
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,20" />
+
+            <Button Text="Обучение" 
+                    Style="{StaticResource MenuButtonStyle}"
+                    Clicked="OnLearningClicked" />
+
+            <Button Text="Тесты" 
+                    Style="{StaticResource MenuButtonStyle}"
+                    Clicked="OnTestsClicked" />
+
+            <Button Text="Техническая поддержка" 
+                    Style="{StaticResource MenuButtonStyle}"
+                    Clicked="OnSupportClicked" />
+
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>
