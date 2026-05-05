@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NooBasket.ItogPage"
+             Title="ItogPage"
+             NavigationPage.HasBackButton="False">
+    <VerticalStackLayout Padding="10" Spacing="20">
+        <HorizontalStackLayout HorizontalOptions="Center" Padding="10" Spacing="20">
+            <Label 
+                Text="Вы прошли тест на  "
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                FontSize="30"/>
+            <Label x:Name="Persent" HorizontalOptions="Center"
+                   FontSize="30"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout HorizontalOptions="Center" Padding="10" Spacing="20">
+            <Label Text="Количество правильных ответов:"
+                   FontSize="30"
+                   HorizontalOptions="Center"/>
+            <Label x:Name="NumOfCorrect" HorizontalOptions="Center" FontSize="30"/>
+        </HorizontalStackLayout>
+        <Button Text="Выход" Clicked="GoToMenu"
+                WidthRequest="120"/>
+    </VerticalStackLayout>
+</ContentPage>
