@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NooBasket.TopicDetailPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="#FFD66C">
+
+    <ContentPage.Resources>
+        <!-- Стиль для кнопки назад -->
+        <Style x:Key="BackButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#405CA3"/>
+            <Setter Property="TextColor" Value="#FFD66C"/>
+            <Setter Property="CornerRadius" Value="18"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="HeightRequest" Value="45"/>
+            <Setter Property="WidthRequest" Value="100"/>
+            <Setter Property="Margin" Value="20,20,0,0"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <!-- Две строки: Шапка (фиксирована) и Контент (скроллится) -->
+    <Grid RowDefinitions="Auto, *" BackgroundColor="#FFD66C">
+
+        <!-- 1. Шапка с центрированным заголовком -->
+        <Grid Grid.Row="0" 
+              ColumnDefinitions="*, Auto, *" 
+              Padding="0, 20, 20, 20"
+              VerticalOptions="Center">
+
+            <!-- Левая колонка с кнопкой назад -->
+            <Button Grid.Column="0"
+                    Text="Назад"
+                    Style="{StaticResource BackButtonStyle}"
+                    HorizontalOptions="Start"
+                    Clicked="OnBackClicked" />
+
+            <!-- Название темы по центру -->
+            <Label Grid.Column="1"
+                   x:Name="TopicTitleLabel"
+                   Text="Здесь будет вставлена тема из кода"
+                   TextColor="#405CA3"
+                   FontSize="26"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   LineBreakMode="WordWrap" />
+
+            <!-- Правая колонка для баланса (пустая) -->
+            <Grid Grid.Column="2" />
+
+        </Grid>
+
+        <!-- 2. Скроллящаяся область (текст + кнопка внизу) -->
+        <ScrollView Grid.Row="1" Padding="20, 0, 20, 50">
+            <VerticalStackLayout x:Name="ContentStack" Spacing="20">
+
+                <!-- Сюда C# будет добавлять тексты и картинки -->
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+    </Grid>
+</ContentPage>
