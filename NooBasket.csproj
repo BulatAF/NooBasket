@@ -50,7 +50,6 @@
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
-		<MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185" />
 		
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
@@ -66,38 +65,28 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Test1.xaml.cs">
-	    <DependentUpon>Test1.xaml</DependentUpon>
+	  <Compile Update="EducationTopicPage.xaml.cs">
+	    <DependentUpon>EducationTopicPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiAsset Update="Resources\Raw\Progress.json">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </MauiAsset>
-	  <MauiAsset Update="Resources\Raw\Topic1.json">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </MauiAsset>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <MauiXaml Update="ItogPage.xaml">
+	  <MauiXaml Update="EducationPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="MenuTests.xaml">
+	  <MauiXaml Update="EducationTopicPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Statistics.xaml">
+	  <MauiXaml Update="StatisticsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Test1.xaml">
-	  <MauiXaml Update="LearningPage.xaml">
+	  <MauiXaml Update="TestingPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="TestsPage.xaml">
+	  <MauiXaml Update="TestingResultPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="TopicDetailPage.xaml">
+	  <MauiXaml Update="TestingTopicPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

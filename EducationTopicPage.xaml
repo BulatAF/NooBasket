@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NooBasket.EducationTopicPage"
+             Title="EducationTopicPage">
+    <ScrollView Orientation="Vertical" Padding="10">
+        <StackLayout>
+            <Button Text="Назад"
+                    Command="{Binding GoToEducationPageCommand}"
+                    Margin="20"/>
+
+            <Label Text="{Binding Title}"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="20"/>
+
+            <CollectionView ItemsSource="{Binding Blocks}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Margin="20">
+                            <Label Text="{Binding Text}" FontSize="16"/>
+                            <Image Source="{Binding Image}" HeightRequest="200" HorizontalOptions="Center"/>
+                            <Label Text="{Binding Caption}" FontSize="14" FontAttributes="Italic" HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button Text="Пройти тест"
+                    Command="{Binding GoToTestCommand}"
+                    Margin="20"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

@@ -2,6 +2,36 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NooBasket.MainPage">
+    <ScrollView>
+        <StackLayout Orientation="Vertical" Padding="30">
+            <Label Text="{Binding WelcomeMessage}" 
+                   FontSize="24"
+                   HorizontalOptions="Center"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   Padding="20"/>
+
+            <!--Command свойство кнопки, которое определяет какой метод выполнится при нажатии-->
+            <!--Binding привязка данных-->
+            <Button Text="Пройти обучение" 
+                    Command="{Binding GoToEducationCommand}"
+                    Margin="20"/>
+
+            <Button Text="Пройти тесты" 
+                    Command="{Binding GoToTestingCommand}"
+                    Margin="20"/>
+
+            <Button Text="Статистика тестов"
+                    Command="{Binding GoToStatisticsCommand}"
+                    Margin="20"/>
+
+            <Button Text="Обратится в техподдержку"
+                    Command="{Binding ContactSupportCommand}"
+                    HorizontalOptions="End"
+                    Margin="20"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
     <VerticalStackLayout Padding="10" Spacing="20">
         <Button Clicked="NextStr" Text="Тестирование"
                 VerticalOptions="Center" HorizontalOptions="Center"

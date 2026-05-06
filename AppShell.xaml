@@ -6,18 +6,42 @@
     xmlns:local="clr-namespace:NooBasket"
     Title="NooBasket">
 
+    <!-- Обучение -->
     <ShellContent
         Title="Главная"
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
     <ShellContent
-        Title="Меню тестов"
-        ContentTemplate="{DataTemplate local:MenuTests}"
-        Route="MenuTests" />
-    
+        Title="Обучение"
+        ContentTemplate="{DataTemplate local:EducationPage}"
+        Route="EducationPage" />
+
+    <ShellContent
+        Title="Тема обучения"
+        ContentTemplate="{DataTemplate local:EducationTopicPage}"
+        Route="EducationTopicPage" />
+
+    <!-- Тестирование -->
+    <ShellContent
+        Title="Тесты"
+        ContentTemplate="{DataTemplate local:TestingPage}"
+        Route="TestingPage" />
+
+    <ShellContent
+        Title="Тестирование темы"
+        ContentTemplate="{DataTemplate local:TestingTopicPage}"
+        Route="TestingTopicPage" />
+
+    <ShellContent
+        Title="Результат"
+        ContentTemplate="{DataTemplate local:TestingResultPage}"
+        Route="TestingResultPage" />
+
+    <!-- Статистика -->
     <ShellContent
         Title="Статистика"
-        ContentTemplate="{DataTemplate local:Statistics}"
-        Route="Statistics" />
+        ContentTemplate="{DataTemplate local:StatisticsPage}"
+        Route="StatisticsPage" />
+
 </Shell>
