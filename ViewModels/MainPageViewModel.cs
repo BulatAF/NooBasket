@@ -33,5 +33,6 @@ namespace NooBasket.ViewModels
                 "Свяжитесь с нами: ",
                 "OK");
         }
+
     }
 }

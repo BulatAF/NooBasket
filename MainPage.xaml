@@ -4,6 +4,7 @@
              x:Class="NooBasket.MainPage">
     <ScrollView>
         <StackLayout Orientation="Vertical" Padding="30">
+
             <Label Text="{Binding WelcomeMessage}" 
                    FontSize="24"
                    HorizontalOptions="Center"

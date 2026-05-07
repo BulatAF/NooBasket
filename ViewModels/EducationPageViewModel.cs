@@ -49,7 +49,37 @@ namespace NooBasket.ViewModels
         {
             try
             {
-                await Shell.Current.GoToAsync($"///EducationTopicPage?topicId={topic.Id}");//переходим на страницу темы по ее номеру
+                // если это первая тема - доступна всегда
+                if (topic.Id == 1)
+                {
+                    await Shell.Current.GoToAsync($"///EducationTopicPage?topicId={topic.Id}");
+                    return;
+                }
+
+                // проверяем прогресс по предыдущей теме 
+                int previousTopicId = topic.Id - 1;
+                TestingTopicsProgress? progress = await TestingTopicsProgressLoader.GetProgressAsync(previousTopicId);
+
+                // если предыдущий тест не пройден или результат меньше 70%
+                if (progress == null || progress.Percent < 70)
+                {
+                    string lastTopicResult = "тест не пройден";
+                    if (progress != null)
+                    {
+                        lastTopicResult = $"{progress.Percent:F1}%";
+                    }
+
+                    await Shell.Current.DisplayAlert(
+                        "Доступ ограничен",
+                        $"Чтобы открыть тему \"{topic.Title}\", необходимо пройти предыдущую тему на 70% или выше." + "\n" + "\n" +
+                        $"Текущий результат предыдущей темы: {lastTopicResult}",
+                        "OK"
+                    );
+                    return;
+                }
+
+                // если проверка пройдена - переходим
+                await Shell.Current.GoToAsync($"///EducationTopicPage?topicId={topic.Id}");
             }
             catch (Exception ex)
             {

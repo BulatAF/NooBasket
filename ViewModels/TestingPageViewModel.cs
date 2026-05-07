@@ -46,11 +46,40 @@ namespace NooBasket.ViewModels
         //команда для перехода на страницу тестирования по конкретной теме
         //принимает объект TestTopic которую выбрал пользователь
         [RelayCommand]
-        public async Task GoToTestingTopicAsync(TestTopic topic)
+        public async Task GoToTestingTopicAsync(TestTopic topic)//передаем тему
         {
             try
             {
-                //передаем параметр topicId
+                // если это первая тема - доступна всегда
+                if (topic.Id == 1)
+                {
+                    await Shell.Current.GoToAsync($"///TestingTopicPage?topicId={topic.Id}");
+                    return;
+                }
+
+                // проверяем прогресс по предыдущей теме 
+                int previousTopicId = topic.Id - 1;
+                TestingTopicsProgress? progress = await TestingTopicsProgressLoader.GetProgressAsync(previousTopicId);
+
+                // если предыдущий тест не пройден или результат меньше 70%
+                if (progress == null || progress.Percent < 70)
+                {
+                    string lastTopicResult = "тест не пройден";
+                    if (progress != null)
+                    {
+                        lastTopicResult = $"{progress.Percent:F1}%";
+                    }
+
+                    await Shell.Current.DisplayAlert(
+                        "Доступ ограничен",
+                        $"Чтобы открыть тест \"{topic.Title}\", необходимо пройти предыдущий тест на 70% или выше." + "\n" + "\n" +
+                        $"Текущий результат предыдущего теста: {lastTopicResult}",
+                        "OK"
+                    );
+                    return;
+                }
+
+                // если проверка пройдена - переходим
                 await Shell.Current.GoToAsync($"///TestingTopicPage?topicId={topic.Id}");
             }
             catch (Exception ex)

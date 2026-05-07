@@ -34,7 +34,7 @@
                 Margin="0,0,0,10"
                 HorizontalOptions="Center"/>
 
-        <Button Text="Перейти к изученю слудующей темы" 
+        <Button Text="Перейти к изучению следующей темы" 
                 Command="{Binding GoToNextEducationTopicCommand}"
                 Margin="0,0,0,10"
                 HorizontalOptions="Center"/>
