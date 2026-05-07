@@ -19,7 +19,7 @@ namespace NooBasket.Models
                 string json = await File.ReadAllTextAsync(_filePath); //читаем весь текст из файла
 
                 //пытаемся превратить json строку в словарь
-                var progress = JsonSerializer.Deserialize<Dictionary<int, TestingTopicsProgress>>(json);
+                Dictionary<int, TestingTopicsProgress>? progress = JsonSerializer.Deserialize<Dictionary<int, TestingTopicsProgress>>(json);
 
                 if (progress != null) //если десериализация прошла успешно
                 {

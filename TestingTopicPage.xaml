@@ -10,10 +10,8 @@
         <VerticalStackLayout Spacing="20" Padding="10" HorizontalOptions="Center">
 
             <!-- ннопка назад с всплывающим окном-->
-            <Button Text="← Назад"
+            <Button Text="Назад"
                     Command="{Binding GoBackCommand}"
-                    BackgroundColor="Gray"
-                    TextColor="White"
                     HorizontalOptions="Start"
                     Margin="0,0,0,10"
                     WidthRequest="100"/>

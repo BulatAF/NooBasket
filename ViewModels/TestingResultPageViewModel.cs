@@ -66,5 +66,41 @@ namespace NooBasket.ViewModels
         {
             await Shell.Current.GoToAsync("///TestingPage");
         }
+
+        [RelayCommand]
+        public async Task GoToTestingTopicAgainAsync()
+        {
+            try
+            {
+                //передаем параметр topicId
+                await Shell.Current.GoToAsync($"///TestingTopicPage?topicId={TopicId}");
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Ошибка навигации из страницы с результатом теста", ex.Message, "OK");
+            }
+        }
+
+        [RelayCommand]
+        public async Task GoToNextEducationTopicAsync()
+        {
+            try
+            {
+                if (TopicId != 19)
+                {
+                    await Shell.Current.GoToAsync($"///EducationTopicPage?topicId={TopicId + 1}");//переходим на страницу темы по ее номеру
+                }
+                else
+                {
+                    await Shell.Current.DisplayAlert("Поздравляем",
+                                                    "Все темы для обучения и тесты к ним пройдены!",
+                                                    "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Ошибка навигации из страницы с результатом теста", ex.Message, "OK");
+            }
+        }
     }
 }
