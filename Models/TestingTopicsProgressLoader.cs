@@ -49,21 +49,33 @@ namespace NooBasket.Models
             return null; //темы нет в словаре
         }
 
-        //обновить прогресс для темы
+        //обновить прогресс для темы (сохраняет только лучший результат)
         public static async Task UpdateProgressAsync(int topicId, TestingTopicsProgress progress)
         {
             await LoadAllProgress(); //сначала загружаем прогресс из файла
 
             if (_allProgress == null) return; //если прогресса нет - выходим
 
-            _allProgress[topicId] = progress; //добавляем или обновляем прогресс для темы
+            // проверяем есть ли уже сохранённый прогресс для этой темы
+            if (_allProgress.ContainsKey(topicId))
+            {
+                TestingTopicsProgress? existingProgress = _allProgress[topicId];
+
+                // если старый результат лучше или равен новому - не сохраняем
+                if (existingProgress != null && existingProgress.Percent >= progress.Percent)
+                {
+                    return; // выходим, не сохраняя новый результат
+                }
+            }
+
+            // если старого нет или новый лучше - сохраняем
+            _allProgress[topicId] = progress;
 
             //превращаем словарь в json строку с отступами (чтобы файл был читаемый)
-            JsonSerializerOptions options = new JsonSerializerOptions { WriteIndented = true };//добавляем настройки с которыми все запишется в файл
-            //WriteIndented = true значит что в json файле все будет красиво с отступами
-            string json = JsonSerializer.Serialize(_allProgress, options); //превращаем словаь в строку json
+            JsonSerializerOptions options = new JsonSerializerOptions { WriteIndented = true };
+            string json = JsonSerializer.Serialize(_allProgress, options);
 
-            await File.WriteAllTextAsync(_filePath, json); //открываем файл, записываем json строку и закрываем
+            await File.WriteAllTextAsync(_filePath, json);
         }
     }
 }

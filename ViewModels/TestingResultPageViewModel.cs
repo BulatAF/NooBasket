@@ -102,5 +102,11 @@ namespace NooBasket.ViewModels
                 await Shell.Current.DisplayAlert("Ошибка навигации из страницы с результатом теста", ex.Message, "OK");
             }
         }
+
+        [RelayCommand]
+        private async Task GoToStatisticsAsync()//переход на страницу с статистикой
+        {
+            await Shell.Current.GoToAsync("//StatisticsPage");
+        }
     }
 }

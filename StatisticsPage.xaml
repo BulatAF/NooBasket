@@ -6,6 +6,8 @@
 
     <ScrollView Orientation="Vertical" Padding="20">
         <StackLayout>
+
+            
             <Button Text="Назад" 
                     Command="{Binding GoToMainCommand}"
                     Margin="10"/>
@@ -15,6 +17,13 @@
                    FontAttributes="Bold"
                    HorizontalOptions="Center"
                    Margin="10"/>
+            
+            <Label Text="{Binding StatisticsMessage}" 
+                   FontSize="24"
+                   HorizontalOptions="Center"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   Padding="20"/>
 
             <CollectionView ItemsSource="{Binding TopicsStats}"
                            Margin="0,10,0,0">

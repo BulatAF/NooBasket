@@ -6,6 +6,8 @@ namespace NooBasket.ViewModels
 {
     public partial class StatisticsPageViewModel : ObservableObject
     {
+        [ObservableProperty]
+        private string _statisticsMessage = "В статистике представлены ваши лучшие результаты по каждому из тестов";
         // список статистики по всем темам
         [ObservableProperty]
         private List<TopicStatistics> _topicsStats = new();
