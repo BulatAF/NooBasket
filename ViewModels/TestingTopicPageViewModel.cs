@@ -90,8 +90,8 @@ namespace NooBasket.ViewModels
         // номер темы
         private int _topicId;
 
-        // прогресс по теме (сколько правильных)
-        private TestingTopicsProgress? _progress;
+        // временный прогресс по теме (не сохраняется в файл до завершения)
+        private TestingTopicsProgress? _tmpProgress;
 
         // выбран ли ответ (чтобы нельзя было нажать дважды)
         private bool _answerSelected = false;
@@ -125,11 +125,11 @@ namespace NooBasket.ViewModels
                 Title = _currentTopic.Title;
                 TotalQuestions = _currentTopic.Questions.Count;
 
-                // создаем новый прогресс для этого теста (начинаем с нуля)
-                _progress = new TestingTopicsProgress();
-                _progress.Answers = new List<int>(new int[_currentTopic.Questions.Count]);
-                _progress.NumberOfCorrect = 0;
-                _progress.NumberOfAll = 0;
+                // создаем временный прогресс для этого теста (начинаем с нуля)
+                _tmpProgress = new TestingTopicsProgress();
+                _tmpProgress.Answers = new List<int>(new int[_currentTopic.Questions.Count]);
+                _tmpProgress.NumberOfCorrect = 0;
+                _tmpProgress.NumberOfAll = 0;
 
                 // начинаем с первого вопроса
                 _currentQuestionIndex = 0;
@@ -285,9 +285,9 @@ namespace NooBasket.ViewModels
 
             if (isCorrect == true)
             {
-                // правильный ответ записываем 1 в прогресс
-                _progress.Answers[_currentQuestionIndex] = 1;
-                _progress.NumberOfCorrect = _progress.NumberOfCorrect + 1;
+                // правильный ответ записываем 1 во временный прогресс
+                _tmpProgress.Answers[_currentQuestionIndex] = 1;
+                _tmpProgress.NumberOfCorrect = _tmpProgress.NumberOfCorrect + 1;
 
                 // подсвечиваем выбранный ответ зеленым
                 int selectedIndex = AnswerOptions.IndexOf(selectedAnswer);
@@ -295,8 +295,8 @@ namespace NooBasket.ViewModels
             }
             else
             {
-                // неправильный ответ записываем 0 в прогресс
-                _progress.Answers[_currentQuestionIndex] = 0;
+                // неправильный ответ записываем 0 во временный прогресс
+                _tmpProgress.Answers[_currentQuestionIndex] = 0;
 
                 // подсвечиваем выбранный ответ красным
                 int selectedIndex = AnswerOptions.IndexOf(selectedAnswer);
@@ -310,10 +310,8 @@ namespace NooBasket.ViewModels
             }
 
             // увеличиваем счетчик отвеченных вопросов
-            _progress.NumberOfAll = _progress.NumberOfAll + 1;
-
-            // сохраняем прогресс в файл
-            await TestingTopicsProgressLoader.UpdateProgressAsync(_topicId, _progress);
+            _tmpProgress.NumberOfAll = _tmpProgress.NumberOfAll + 1;
+            //весь прогресс хранится во временной переменной до тех пор, пока пользователь не пройдет тест до конца
 
             // показываем объяснение
             TestQuestion question = _currentTopic.Questions[_currentQuestionIndex];
@@ -333,13 +331,13 @@ namespace NooBasket.ViewModels
             // проверяем был ли это последний вопрос
             if (_currentQuestionIndex + 1 == _currentTopic.Questions.Count)
             {
-                // последний вопрос сохраняем прогресс и идем на результат
-                await TestingTopicsProgressLoader.UpdateProgressAsync(_topicId, _progress);
+                // последний вопрос - сохраняем прогресс в файл и идем на результат
+                await TestingTopicsProgressLoader.UpdateProgressAsync(_topicId, _tmpProgress);
                 await Shell.Current.GoToAsync($"///TestingResultPage?topicId={_topicId}");
             }
             else
             {
-                // не последний переходим к следующему вопросу
+                // не последний - переходим к следующему вопросу
                 _currentQuestionIndex = _currentQuestionIndex + 1;
                 LoadCurrentQuestion();
             }
@@ -349,7 +347,18 @@ namespace NooBasket.ViewModels
         [RelayCommand]
         private async Task GoBackAsync()
         {
-            await Shell.Current.GoToAsync("///TestingPage");
+            // всплывающее окно с предупреждением
+            bool answer = await Shell.Current.DisplayAlert(
+                "Выйти из теста?",
+                "Если вы выйдете из теста сейчас, текущий прогресс не сохранится.",
+                "Выйти",
+                "Продолжить тестирование"
+            );
+
+            if (answer)
+            {
+                await Shell.Current.GoToAsync("///TestingPage");
+            }
         }
     }
 }
