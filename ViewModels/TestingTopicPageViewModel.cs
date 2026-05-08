@@ -51,19 +51,19 @@ namespace NooBasket.ViewModels
 
         // цвет фона первой кнопки
         [ObservableProperty]
-        private Color _answer0Color = Colors.Purple;
+        private Color _answer0Color = Color.FromArgb("#D2691E");
 
         // цвет фона второй кнопки
         [ObservableProperty]
-        private Color _answer1Color = Colors.Purple;
+        private Color _answer1Color = Color.FromArgb("#D2691E");
 
         // цвет фона третьей кнопки
         [ObservableProperty]
-        private Color _answer2Color = Colors.Purple;
+        private Color _answer2Color = Color.FromArgb("#D2691E");
 
         // цвет фона четвертой кнопки
         [ObservableProperty]
-        private Color _answer3Color = Colors.Purple;
+        private Color _answer3Color = Color.FromArgb("#D2691E");
 
         // цвет текста 
         [ObservableProperty]
@@ -214,10 +214,10 @@ namespace NooBasket.ViewModels
         private void ResetAnswerColors()
         {
             // фон становится фиолетовым 
-            Answer0Color = Colors.Purple;
-            Answer1Color = Colors.Purple;
-            Answer2Color = Colors.Purple;
-            Answer3Color = Colors.Purple;
+            Answer0Color = Color.FromArgb("#D2691E");
+            Answer1Color = Color.FromArgb("#D2691E");
+            Answer2Color = Color.FromArgb("#D2691E");
+            Answer3Color = Color.FromArgb("#D2691E");
 
             // текст становится белым
             Answer0TextColor = Colors.White;
