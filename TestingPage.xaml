@@ -1,29 +1,40 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:NooBasket.ViewModels"
              x:Class="NooBasket.TestingPage"
              x:Name="PageRoot"
              Title="Тестирование">
 
-    <ScrollView Orientation="Vertical" Padding="30">
-        <StackLayout>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackLayout Grid.Row="0" Padding="20,20,20,0">
             <Button Text="Назад" 
                     Command="{Binding GoToMainCommand}"
-                    Margin="20"/>
-
-            <!--CollectionView для отображения списка данных, ItemSource в качестве значения принимает коллекцию IEnumerable-->
-            <CollectionView ItemsSource="{Binding Topics}">
-                <CollectionView.ItemTemplate>
-                    <!--свойство ItemsTemplate отвечает за установку шаблона отображения данных-->
-                    <DataTemplate>
-                        <Button Text="{Binding TitleWithId}" 
-                                Command="{Binding Source={x:Reference PageRoot}, Path=BindingContext.GoToTestingTopicCommand}"
-                                CommandParameter="{Binding .}" 
-                                Margin="20"/>
-                    </DataTemplate>
-                    <!--CommandParameter="{Binding} привязывается к текущему обьекту (данные текущей темы)-->
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                    HorizontalOptions="Start"/>
         </StackLayout>
-    </ScrollView>
+
+        <ScrollView Grid.Row="1" Orientation="Vertical" Padding="30,0,30,30"
+            HorizontalScrollBarVisibility="Never">
+            <StackLayout HorizontalOptions="Center">
+                <CollectionView ItemsSource="{Binding Topics}"
+                        HorizontalOptions="Center"
+                        WidthRequest="500">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <!--Кнопка для выбора темы, передаем объект темы в команду-->
+                            <Button Text="{Binding TitleWithId}" 
+                            Command="{Binding Source={x:Reference PageRoot}, Path=BindingContext.GoToTestingTopicCommand}"
+                            CommandParameter="{Binding .}"
+                            Margin="20"/>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

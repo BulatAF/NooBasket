@@ -5,24 +5,34 @@
              x:Class="NooBasket.EducationPage"
              x:Name="PageRoot">
 
-    <ScrollView Orientation="Vertical" Padding="30">
-        <StackLayout>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackLayout Grid.Row="0" Padding="20,20,20,0">
             <Button Text="Назад" 
                     Command="{Binding GoToMainCommand}"
-                    Margin="20"/>
-            <!--CollectionView для отображения списка данных, ItemSource в качестве значения принимает коллекцию IEnumerable-->
-            <CollectionView ItemsSource="{Binding Topics}">
-                <CollectionView.ItemTemplate>
-                    <!--свойство ItemsTemplate отвечает за установку шаблона отображения данных-->
-                    <DataTemplate>
-                        <Button Text="{Binding TitleWithID}" 
-                                Command="{Binding Source={x:Reference PageRoot}, Path=BindingContext.GoToEducationTopicCommand}"
-                                CommandParameter="{Binding .}" 
-                                Margin="20"/>
-                    </DataTemplate>
-                    <!--CommandParameter="{Binding} привязывается к текущему обьекту (данные текущей темы)-->
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                    HorizontalOptions="Start"/>
         </StackLayout>
-    </ScrollView>
+
+        <ScrollView Grid.Row="1" Orientation="Vertical" Padding="30,0,30,30"
+            HorizontalScrollBarVisibility="Never">
+            <StackLayout HorizontalOptions="Center">
+                <CollectionView ItemsSource="{Binding Topics}"
+                        HorizontalOptions="Center"
+                        WidthRequest="500">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Button Text="{Binding TitleWithID}" 
+                            Command="{Binding Source={x:Reference PageRoot}, Path=BindingContext.GoToEducationTopicCommand}"
+                            CommandParameter="{Binding .}"
+                            Margin="20"/>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>

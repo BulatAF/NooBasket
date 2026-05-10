@@ -213,17 +213,15 @@ namespace NooBasket.ViewModels
         // сбрасываем цвета всех кнопок
         private void ResetAnswerColors()
         {
-            // фон становится фиолетовым 
-            Answer0Color = Color.FromArgb("#D2691E");
-            Answer1Color = Color.FromArgb("#D2691E");
-            Answer2Color = Color.FromArgb("#D2691E");
-            Answer3Color = Color.FromArgb("#D2691E");
+            Answer0Color = Color.FromArgb("#E28F04");
+            Answer1Color = Color.FromArgb("#E28F04");
+            Answer2Color = Color.FromArgb("#E28F04");
+            Answer3Color = Color.FromArgb("#E28F04");
 
-            // текст становится белым
-            Answer0TextColor = Colors.White;
-            Answer1TextColor = Colors.White;
-            Answer2TextColor = Colors.White;
-            Answer3TextColor = Colors.White;
+            Answer0TextColor = Color.FromArgb("#FFE9C4");
+            Answer1TextColor = Color.FromArgb("#FFE9C4");
+            Answer2TextColor = Color.FromArgb("#FFE9C4");
+            Answer3TextColor = Color.FromArgb("#FFE9C4");
         }
 
         // устанавливаем цвет для кнопки

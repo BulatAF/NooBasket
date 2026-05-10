@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace NooBasket.ViewModels
 {
     [QueryProperty(nameof(TopicId), "topicId")]
-    internal partial class EducationTopicPageViewModel: ObservableObject
+    internal partial class EducationTopicPageViewModel : ObservableObject
     {
         [ObservableProperty]
         private string _title = ""; // заголовок темы

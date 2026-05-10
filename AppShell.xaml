@@ -6,7 +6,6 @@
     xmlns:local="clr-namespace:NooBasket"
     Title="NooBasket">
 
-    <!-- Обучение -->
     <ShellContent
         Title="Главная"
         ContentTemplate="{DataTemplate local:MainPage}"
@@ -21,8 +20,7 @@
         Title="Тема обучения"
         ContentTemplate="{DataTemplate local:EducationTopicPage}"
         Route="EducationTopicPage" />
-
-    <!-- Тестирование -->
+    
     <ShellContent
         Title="Тесты"
         ContentTemplate="{DataTemplate local:TestingPage}"
@@ -37,8 +35,7 @@
         Title="Результат"
         ContentTemplate="{DataTemplate local:TestingResultPage}"
         Route="TestingResultPage" />
-
-    <!-- Статистика -->
+    
     <ShellContent
         Title="Статистика"
         ContentTemplate="{DataTemplate local:StatisticsPage}"

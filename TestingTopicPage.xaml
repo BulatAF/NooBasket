@@ -47,10 +47,10 @@
                     BackgroundColor="{Binding Answer0Color}"
                     TextColor="{Binding Answer0TextColor}"
                     WidthRequest="300"
-                    BorderWidth="1"
-                    BorderColor="DarkGray"
-                    HeightRequest="60"
-                    LineBreakMode="WordWrap"/>
+
+                    MinimumHeightRequest="60"
+                    LineBreakMode="WordWrap"
+                    HorizontalOptions="Center"/>
 
             <!--2 вариант ответа-->
             <Button Text="{Binding AnswerOptions[1]}"
@@ -59,10 +59,10 @@
                     BackgroundColor="{Binding Answer1Color}"
                     TextColor="{Binding Answer1TextColor}"
                     WidthRequest="300"
-                    BorderWidth="1"
-                    BorderColor="DarkGray"
-                    HeightRequest="60"
-                    LineBreakMode="WordWrap"/>
+
+                    MinimumHeightRequest="60"
+                    LineBreakMode="WordWrap"
+                    HorizontalOptions="Center"/>
 
             <!--3 вариант ответа-->
             <Button Text="{Binding AnswerOptions[2]}"
@@ -71,10 +71,10 @@
                     BackgroundColor="{Binding Answer2Color}"
                     TextColor="{Binding Answer2TextColor}"
                     WidthRequest="300"
-                    BorderWidth="1"
-                    BorderColor="DarkGray"
-                    HeightRequest="60"
-                    LineBreakMode="WordWrap"/>
+
+                    MinimumHeightRequest="60"
+                    LineBreakMode="WordWrap"
+                    HorizontalOptions="Center"/>
 
             <!--4 вариант ответа-->
             <Button Text="{Binding AnswerOptions[3]}"
@@ -83,10 +83,10 @@
                     BackgroundColor="{Binding Answer3Color}"
                     TextColor="{Binding Answer3TextColor}"
                     WidthRequest="300"
-                    BorderWidth="1"
-                    BorderColor="DarkGray"
-                    HeightRequest="60"
-                    LineBreakMode="WordWrap"/>
+
+                    MinimumHeightRequest="60"
+                    LineBreakMode="WordWrap"
+                    HorizontalOptions="Center"/>
 
             <!--объяснение ответа-->
             <Label Text="{Binding AnswerExplanation}" 
