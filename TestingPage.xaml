@@ -26,7 +26,7 @@
                         WidthRequest="500">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <!--Кнопка для выбора темы, передаем объект темы в команду-->
+                            <!--кнопка для выбора темы, передаем объект темы в команду-->
                             <Button Text="{Binding TitleWithId}" 
                             Command="{Binding Source={x:Reference PageRoot}, Path=BindingContext.GoToTestingTopicCommand}"
                             CommandParameter="{Binding .}"

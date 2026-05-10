@@ -48,7 +48,7 @@ public partial class EducationTopicPage : ContentPage
                     });
                 }
 
-                // если есть подпись к картинке добавляем её курсивом
+                // если есть подпись к картинке добавляем
                 if (!string.IsNullOrEmpty(block.Caption))
                 {
                     stack.Children.Add(new Label

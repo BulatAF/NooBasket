@@ -40,9 +40,9 @@ namespace NooBasket.Models
                 if (!IsCompleted)
                     return Colors.Gray;
 
-                if (Percent >= 80)
+                if (Percent >= 70)
                     return Colors.Green;
-                else if (Percent >= 60)
+                else if (Percent >= 50)
                     return Colors.Orange;
                 else
                     return Colors.Red;
