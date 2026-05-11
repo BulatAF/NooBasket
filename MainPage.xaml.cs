@@ -1,4 +1,5 @@
-﻿using NooBasket.ViewModels;
+﻿using NooBasket.Services;
+using NooBasket.ViewModels;
 
 namespace NooBasket
 {
@@ -8,7 +9,7 @@ namespace NooBasket
         {
             InitializeComponent();
             BindingContext = new MainPageViewModel();
-        }      
+        }
     }
 
 }

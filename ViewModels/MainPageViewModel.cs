@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using NooBasket.Services;
 
 namespace NooBasket.ViewModels
 {
@@ -32,6 +33,12 @@ namespace NooBasket.ViewModels
             await Shell.Current.DisplayAlert("Поддержка",
                 "Свяжитесь с нами: ",
                 "OK");
+        }
+
+        [RelayCommand]
+        private async Task OpenHelpAsync()
+        {
+            await HelpService.OpenHelpAsync();
         }
 
     }

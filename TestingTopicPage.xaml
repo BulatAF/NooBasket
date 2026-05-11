@@ -12,9 +12,11 @@
             <!-- ннопка назад с всплывающим окном-->
             <Button Text="Назад"
                     Command="{Binding GoBackCommand}"
-                    HorizontalOptions="Start"
-                    Margin="0,0,0,10"
-                    WidthRequest="100"/>
+                    HorizontalOptions="Start"/>
+
+            <Button Text="Помощь"
+                    Command="{Binding OpenHelpCommand}"
+                    HorizontalOptions="Start"/>
 
             <!--заголовок темы-->
             <Label Text="{Binding Title}" 

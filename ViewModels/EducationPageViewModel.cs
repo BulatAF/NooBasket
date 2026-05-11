@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using NooBasket.Models;
+using NooBasket.Services;
 
 namespace NooBasket.ViewModels
 {
@@ -85,6 +86,12 @@ namespace NooBasket.ViewModels
             {
                 await Shell.Current.DisplayAlert("Ошибка навигации из меню обучения", ex.Message, "OK");
             }
+        }
+
+        [RelayCommand]
+        private async Task OpenHelpAsync()
+        {
+            await HelpService.OpenHelpAsync();
         }
     }
 }

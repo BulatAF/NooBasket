@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using NooBasket.Models;
 using Microsoft.Maui.Graphics;
+using NooBasket.Services;
 
 namespace NooBasket.ViewModels
 {
@@ -357,6 +358,12 @@ namespace NooBasket.ViewModels
             {
                 await Shell.Current.GoToAsync("///TestingPage");
             }
+        }
+
+        [RelayCommand]
+        private async Task OpenHelpAsync()
+        {
+            await HelpService.OpenHelpAsync();
         }
     }
 }

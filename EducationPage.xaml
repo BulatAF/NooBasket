@@ -15,6 +15,10 @@
             <Button Text="Назад" 
                     Command="{Binding GoToMainCommand}"
                     HorizontalOptions="Start"/>
+
+            <Button Text="Помощь"
+                    Command="{Binding OpenHelpCommand}"
+                    HorizontalOptions="Start"/>
         </StackLayout>
 
         <ScrollView Grid.Row="1" Orientation="Vertical" Padding="30,0,30,30"

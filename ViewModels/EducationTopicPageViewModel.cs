@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using NooBasket.Models;
+using NooBasket.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -64,6 +65,12 @@ namespace NooBasket.ViewModels
             {
                 await Shell.Current.GoToAsync($"///TestingTopicPage?topicId={_topicId}");
             }
+        }
+
+        [RelayCommand]
+        private async Task OpenHelpAsync()
+        {
+            await HelpService.OpenHelpAsync();
         }
     }
 }

@@ -46,6 +46,10 @@
             <Button Text="Обратится в техподдержку"
                     Command="{Binding ContactSupportCommand}"
                     HorizontalOptions="End"/>
-        </StackLayout>
+
+            <Button Text="Помощь"
+                    Command="{Binding OpenHelpCommand}"
+                    HorizontalOptions="End"/>
+        </StackLayout>        
     </Grid>
 </ContentPage>

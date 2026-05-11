@@ -10,7 +10,12 @@
             
             <Button Text="Назад" 
                     Command="{Binding GoToMainCommand}"
-                    Margin="10"/>
+                    HorizontalOptions="Start"/>
+
+
+            <Button Text="Помощь"
+                    Command="{Binding OpenHelpCommand}"
+                    HorizontalOptions="Start"/>
 
             <Label Text="Статистика"
                    FontSize="24"
