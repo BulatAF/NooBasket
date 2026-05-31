@@ -263,7 +263,7 @@
         },
         {
           "type": "image",
-          "image": "team.jng",
+          "image": "team.jpg",
           "caption": "Баскетбольная команда"
         },
         {
@@ -517,7 +517,7 @@
         },
         {
           "type": "image",
-          "image": "shem_shtraf.jng",
+          "image": "shem_shtraf.jpg",
           "caption": "Штрафной бросок"
         },
         {
@@ -531,7 +531,7 @@
         },
         {
           "type": "image",
-          "image": "two_point.png",
+          "image": "two_point.jpg",
           "caption": "Двухочковый бросок"
         },
         {
@@ -923,7 +923,7 @@
         },
         {
           "type": "image",
-          "image": "holding.png",
+          "image": "holding.jpg",
           "caption": "Явный фол"
         },
         {
