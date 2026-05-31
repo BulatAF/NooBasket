@@ -14,7 +14,7 @@ namespace NooBasket.ViewModels
     internal partial class EducationTopicPageViewModel : ObservableObject
     {
         [ObservableProperty]
-        private string _title = ""; // заголовок темы
+        private string _title = ""; //заголовок темы
 
         [ObservableProperty]
         private List<Block> _blocks = new List<Block>(); //текст+картинки для страницы
