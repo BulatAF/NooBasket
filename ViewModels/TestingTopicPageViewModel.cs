@@ -8,8 +8,30 @@ namespace NooBasket.ViewModels
 {
     // позволяет получить номер темы из строки навигации
     [QueryProperty(nameof(TopicId), "topicId")]
+    [QueryProperty(nameof(ReturnRoute), "returnRoute")]
+    [QueryProperty(nameof(ReturnToResults), "returnToResults")]
+    [QueryProperty(nameof(PrevCorrect), "prevCorrect")]
+    [QueryProperty(nameof(PrevTotal), "prevTotal")]
     public partial class TestingTopicPageViewModel : ObservableObject
     {
+        private int _prevCorrect;
+        private int _prevTotal;
+
+        public int PrevCorrect
+        {
+            get => _prevCorrect;
+            set => _prevCorrect = value;
+        }
+
+        public int PrevTotal
+        {
+            get => _prevTotal;
+            set => _prevTotal = value;
+        }
+        [ObservableProperty]
+        private string _returnToResults = "";
+        [ObservableProperty]
+        private string _returnRoute = "";
         // заголовок темы
         [ObservableProperty]
         private string _title = "";
@@ -36,7 +58,7 @@ namespace NooBasket.ViewModels
 
         // текст на кнопке "Следующая" или "Завершить"
         [ObservableProperty]
-        private string _nextButtonText = "Следующая";
+        private string _nextButtonText = "Следующий вопрос";
 
         // ответил ли пользователь на вопрос
         [ObservableProperty]
@@ -203,11 +225,11 @@ namespace NooBasket.ViewModels
             // если это последний вопрос - меняем текст кнопки
             if (_currentQuestionIndex + 1 == _currentTopic.Questions.Count)
             {
-                NextButtonText = "Завершить";
+                NextButtonText = "Завершить тест";
             }
             else
             {
-                NextButtonText = "Следующая";
+                NextButtonText = "Следующий вопрос";
             }
         }
 
@@ -282,19 +304,29 @@ namespace NooBasket.ViewModels
             // ищем где находится правильный ответ в списке
             int correctIndex = AnswerOptions.IndexOf(_currentCorrectAnswer);
 
+            // берем вопрос чтобы потом взять из него пояснение
+            TestQuestion question = _currentTopic.Questions[_currentQuestionIndex];
+            string baseExplanation = question.AnswerText;
+
+            // переменная для хранения сообщения о результате
+            string resultMessage;
+
             if (isCorrect == true)
             {
-                // правильный ответ записываем 1 во временный прогресс
+                // правильный ответ - сохраняем 1 в прогресс
                 _tmpProgress.Answers[_currentQuestionIndex] = 1;
                 _tmpProgress.NumberOfCorrect = _tmpProgress.NumberOfCorrect + 1;
 
                 // подсвечиваем выбранный ответ зеленым
                 int selectedIndex = AnswerOptions.IndexOf(selectedAnswer);
                 SetAnswerColor(selectedIndex, true);
+
+                // сообщение что правильно
+                resultMessage = "Правильно!";
             }
             else
             {
-                // неправильный ответ записываем 0 во временный прогресс
+                // неправильный ответ - сохраняем 0 в прогресс
                 _tmpProgress.Answers[_currentQuestionIndex] = 0;
 
                 // подсвечиваем выбранный ответ красным
@@ -306,15 +338,16 @@ namespace NooBasket.ViewModels
                 {
                     SetAnswerColor(correctIndex, true);
                 }
+
+                // сообщение что неправильно
+                resultMessage = "Неправильно!";
             }
+
+            // склеиваем результат и пояснение
+            AnswerExplanation = resultMessage + "\n\nПояснение: " + baseExplanation;
 
             // увеличиваем счетчик отвеченных вопросов
             _tmpProgress.NumberOfAll = _tmpProgress.NumberOfAll + 1;
-            //весь прогресс хранится во временной переменной до тех пор, пока пользователь не пройдет тест до конца
-
-            // показываем объяснение
-            TestQuestion question = _currentTopic.Questions[_currentQuestionIndex];
-            AnswerExplanation = question.AnswerText;
 
             // отмечаем что вопрос отвечен
             IsAnswered = true;
@@ -330,9 +363,19 @@ namespace NooBasket.ViewModels
             // проверяем был ли это последний вопрос
             if (_currentQuestionIndex + 1 == _currentTopic.Questions.Count)
             {
-                // последний вопрос - сохраняем прогресс в файл и идем на результат
+                // сохраняем прогресс в файл (там внутри уже логика что сохраняется только лучший)
                 await TestingTopicsProgressLoader.UpdateProgressAsync(_topicId, _tmpProgress);
-                await Shell.Current.GoToAsync($"///TestingResultPage?topicId={_topicId}");
+
+                // передаем на страницу результатов не только id темы, но и результаты этой попытки
+                // для этого используем словарь с параметрами
+                Dictionary<string, object> navigationParams = new Dictionary<string, object>
+                {
+                    { "topicId", _topicId },
+                    { "lastAttemptCorrect", _tmpProgress.NumberOfCorrect },
+                    { "lastAttemptTotal", _tmpProgress.NumberOfAll }
+                };
+
+                await Shell.Current.GoToAsync($"///TestingResultPage", navigationParams);
             }
             else
             {
@@ -341,29 +384,38 @@ namespace NooBasket.ViewModels
                 LoadCurrentQuestion();
             }
         }
-
-        // возврат в меню тестов
         [RelayCommand]
         private async Task GoBackAsync()
         {
-            // всплывающее окно с предупреждением
             bool answer = await Shell.Current.DisplayAlert(
-                "Выйти из теста?",
-                "Если вы выйдете из теста сейчас, текущий прогресс не сохранится.",
-                "Выйти",
-                "Продолжить тестирование"
+                 "Выйти из теста? ",
+                 "Если вы выйдете из теста сейчас, текущий прогресс не сохранится. ",
+                 "Выйти ",
+                 "Продолжить тестирование "
             );
 
             if (answer)
             {
-                await Shell.Current.GoToAsync("///TestingPage");
-            }
-        }
+                if (ReturnToResults == "yes")
+                {
+                    var navigationParams = new Dictionary<string, object>
+            {
+                { "topicId", _topicId },
+                { "lastAttemptCorrect", _prevCorrect },
+                { "lastAttemptTotal", _prevTotal }
+            };
 
-        [RelayCommand]
-        private async Task OpenHelpAsync()
-        {
-            await HelpService.OpenHelpAsync();
+                    await Shell.Current.GoToAsync("//TestingResultPage", navigationParams);
+                }
+                else if (ReturnRoute == "EducationTopicPage")
+                {
+                    await Shell.Current.GoToAsync($"//EducationTopicPage?topicId={TopicId}");
+                }
+                else
+                {
+                    await Shell.Current.GoToAsync("//TestingPage");
+                }
+            }
         }
     }
 }

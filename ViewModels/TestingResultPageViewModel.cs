@@ -6,66 +6,117 @@ using NooBasket.Services;
 namespace NooBasket.ViewModels
 {
     [QueryProperty(nameof(TopicId), "topicId")]
+    [QueryProperty(nameof(LastAttemptCorrect), "lastAttemptCorrect")]
+    [QueryProperty(nameof(LastAttemptTotal), "lastAttemptTotal")]
     public partial class TestingResultPageViewModel : ObservableObject
     {
-        // процент правильных ответов 
         [ObservableProperty]
         private string _percent = "0%";
 
-        // строка с количеством правильных ответов 
         [ObservableProperty]
         private string _correctCount = "0 из 0";
 
-        // номер темы 
-        private int _topicId;
+        [ObservableProperty]
+        private string _bestPercent = ""; // для отображения лучшего результата
 
-        // свойство для получения номера темы, при установке загружаем результаты
+        private int _topicId;
+        private int _lastAttemptCorrect;
+        private int _lastAttemptTotal;
+
         public int TopicId
         {
             get => _topicId;
             set
             {
                 _topicId = value;
-                LoadResultsAsync(); // когда получили id загружаем результаты
+                LoadResultsAsync();
             }
         }
 
-        // загружаем результаты теста из файла
+        public int LastAttemptCorrect
+        {
+            get => _lastAttemptCorrect;
+            set
+            {
+                _lastAttemptCorrect = value;
+                UpdateDisplay();
+            }
+        }
+
+        public int LastAttemptTotal
+        {
+            get => _lastAttemptTotal;
+            set
+            {
+                _lastAttemptTotal = value;
+                UpdateDisplay();
+            }
+        }
+
+        private void UpdateDisplay()
+        {
+            if (_lastAttemptTotal > 0)
+            {
+                double percentValue = (double)_lastAttemptCorrect / _lastAttemptTotal * 100;
+                Percent = $"{Math.Round(percentValue, 0)}%";
+                CorrectCount = $"{_lastAttemptCorrect} из {_lastAttemptTotal}";
+            }
+            else
+            {
+                Percent = "0%";
+                CorrectCount = "0 из 0";
+            }
+        }
+
         private async void LoadResultsAsync()
         {
             try
             {
-                // получаем прогресс по теме из файла TestingProgress.json
-                TestingTopicsProgress? progress = await TestingTopicsProgressLoader.GetProgressAsync(_topicId);
-
-                // получаем тему чтобы узнать общее количество вопросов
                 TestTopic? topic = await TestingTopicsLoader.GetTopicAsync(_topicId);
 
-                // если прогресс и тема существуют
-                if (progress != null && topic != null)
+                // загружаем лучший результат для отображения в интерфейсе 
+                if (topic != null)
                 {
-                    // форматируем процент с двумя знаками после запятой
-                    Percent = $"{progress.Percent:F2}%";
+                    TestingTopicsProgress? bestProgress = await TestingTopicsProgressLoader.GetProgressAsync(_topicId);
+                    if (bestProgress != null && bestProgress.NumberOfAll > 0)
+                    {
+                        BestPercent = $"Лучший результат: {bestProgress.Percent}%";
+                    }
+                    else
+                    {
+                        BestPercent = "";
+                    }
+                }
 
-                    // показываем сколько правильных из скольки всего
-                    CorrectCount = $"{progress.NumberOfCorrect} из {topic.Questions.Count}";
+                // если параметры последней попытки пришли - показываем их
+                if (_lastAttemptTotal > 0)
+                {
+                    return;
+                }
 
-                    // убеждаемся что прогресс точно сохранен в файл
-                    await TestingTopicsProgressLoader.UpdateProgressAsync(_topicId, progress);
+                // если параметров нет - берем лучший результат из файла
+                if (topic != null)
+                {
+                    TestingTopicsProgress? progress = await TestingTopicsProgressLoader.GetProgressAsync(_topicId);
+                    if (progress != null && progress.NumberOfAll > 0)
+                    {
+                        _lastAttemptCorrect = progress.NumberOfCorrect;
+                        _lastAttemptTotal = progress.NumberOfAll;
+                        Percent = $"{progress.Percent}%";
+                        CorrectCount = $"{progress.NumberOfCorrect} из {topic.Questions.Count}";
+                    }
                 }
             }
             catch (Exception ex)
             {
-                // если чтото пошло не так
                 await Shell.Current.DisplayAlert("Ошибка", ex.Message, "OK");
             }
         }
 
-        // команда для возврата в меню тестов
         [RelayCommand]
         private async Task GoToTestingPageAsync()
         {
-            await Shell.Current.GoToAsync("///TestingPage");
+            await Shell.Current.GoToAsync("//TestingPage");
         }
 
         [RelayCommand]
@@ -73,12 +124,11 @@ namespace NooBasket.ViewModels
         {
             try
             {
-                //передаем параметр topicId
-                await Shell.Current.GoToAsync($"///TestingTopicPage?topicId={TopicId}");
+                await Shell.Current.GoToAsync($"//TestingTopicPage?topicId={TopicId}&returnRoute=TestingPage&returnToResults=yes&prevCorrect={_lastAttemptCorrect}&prevTotal={_lastAttemptTotal}");
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Ошибка навигации из страницы с результатом теста", ex.Message, "OK");
+                await Shell.Current.DisplayAlert("Ошибка навигации", ex.Message, "OK");
             }
         }
 
@@ -87,29 +137,13 @@ namespace NooBasket.ViewModels
         {
             try
             {
+                // проверяем лучший результат, а не последний
+                TestingTopicsProgress? bestProgress = await TestingTopicsProgressLoader.GetProgressAsync(TopicId);
+
                 if (TopicId != 19)
                 {
                     int nextTopicId = TopicId + 1;
-
-                    // проверяем прогресс по текущей теме (которую только что прошли)
-                    TestingTopicsProgress? progress = await TestingTopicsProgressLoader.GetProgressAsync(TopicId);
-
-                    // если текущий тест не пройден или результат меньше 70%
-                    if (progress == null || progress.Percent < 70)
-                    {
-                        string currentTopicResult = $"{progress.Percent:F1}%";
-
-                        await Shell.Current.DisplayAlert(
-                            "Доступ ограничен",
-                            $"Чтобы перейти к следующей теме, необходимо пройти текущий тест на 70% или выше." + "\n" + "\n" +
-                            $"Ваш результат: {currentTopicResult}",
-                            "OK"
-                        );
-                        return;
-                    }
-
-                    // если проверка пройдена - переходим к следующей теме
-                    await Shell.Current.GoToAsync($"///EducationTopicPage?topicId={nextTopicId}");
+                    await Shell.Current.GoToAsync($"//EducationTopicPage?topicId={nextTopicId}");
                 }
                 else
                 {
@@ -120,20 +154,20 @@ namespace NooBasket.ViewModels
             }
             catch (Exception ex)
             {
-                await Shell.Current.DisplayAlert("Ошибка навигации из страницы с результатом теста", ex.Message, "OK");
+                await Shell.Current.DisplayAlert("Ошибка навигации", ex.Message, "OK");
             }
         }
 
         [RelayCommand]
-        private async Task GoToStatisticsAsync()//переход на страницу с статистикой
+        private async Task GoToStatisticsAsync()
         {
-            await Shell.Current.GoToAsync("//StatisticsPage");
+            await Shell.Current.GoToAsync($"//StatisticsPage?returnToTopicId={TopicId}&savedCorrect={_lastAttemptCorrect}&savedTotal={_lastAttemptTotal}");
         }
 
         [RelayCommand]
-        private async Task OpenHelpAsync()
+        private async Task GoToMainAsync()
         {
-            await HelpService.OpenHelpAsync();
+            await Shell.Current.GoToAsync("//MainPage");
         }
     }
 }

@@ -7,6 +7,7 @@
              x:Name="MainPageRoot"
              Title="Главная">
 
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -42,14 +43,10 @@
             </StackLayout>
         </ScrollView>
 
-        <StackLayout Grid.Row="1" Padding="20" VerticalOptions="End">
+        <StackLayout Grid.Row="1" Padding="10" VerticalOptions="End">
             <Button Text="Обратится в техподдержку"
                     Command="{Binding ContactSupportCommand}"
                     HorizontalOptions="End"/>
-
-            <Button Text="Помощь"
-                    Command="{Binding OpenHelpCommand}"
-                    HorizontalOptions="End"/>
-        </StackLayout>        
+        </StackLayout>
     </Grid>
 </ContentPage>

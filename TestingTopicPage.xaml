@@ -7,101 +7,93 @@
              NavigationPage.HasBackButton="False">
 
     <ScrollView>
-        <VerticalStackLayout Spacing="20" Padding="10" HorizontalOptions="Center">
+        <VerticalStackLayout Spacing="8" Padding="8">
 
-            <!-- ннопка назад с всплывающим окном-->
+            <!-- кнопка назад с всплывающим окном -->
             <Button Text="Назад"
                     Command="{Binding GoBackCommand}"
                     HorizontalOptions="Start"/>
 
-            <Button Text="Помощь"
-                    Command="{Binding OpenHelpCommand}"
-                    HorizontalOptions="Start"/>
-
-            <!--заголовок темы-->
+            <!-- заголовок темы -->
             <Label Text="{Binding Title}" 
-                   FontSize="24" 
+                   FontSize="22" 
                    FontAttributes="Bold"
-                   HorizontalOptions="Center"/>
+                   HorizontalOptions="Center"
+                   LineBreakMode="WordWrap"
+                   Margin="0,0,0,4"/>
 
-            <!--номер текущего вопроса из общего количества -->
+            <!-- номер текущего вопроса -->
             <Label Text="{Binding CurrentQuestionNumber, StringFormat='Вопрос {0}'}"
                    HorizontalOptions="Center"
-                   FontSize="16"/>
+                   FontSize="14"
+                   Margin="0,0,0,8"/>
 
-            <!--текст самого вопроса -->
+            <!-- текст вопроса -->
             <Label Text="{Binding QuestionText}" 
-                   FontSize="20"
+                   FontSize="18"
                    HorizontalOptions="Center"
-                   Margin="10"/>
+                   HorizontalTextAlignment="Center"
+                   LineBreakMode="WordWrap"
+                   Margin="0,0,0,8"/>
 
-            <!--картинка к вопросу-->
+            <!-- картинка к вопросу -->
             <Image Source="{Binding QuestionImage}" 
-                   HeightRequest="200" 
+                   HeightRequest="180" 
                    HorizontalOptions="Center"
                    IsVisible="{Binding IsImageVisible}"
-                   Margin="0,10"/>
+                   Margin="0,0,0,8"/>
 
-            <!--1 вариант ответа-->
+            <!-- варианты ответов -->
             <Button Text="{Binding AnswerOptions[0]}"
                     Command="{Binding SelectAnswerCommand}"
                     CommandParameter="{Binding AnswerOptions[0]}"
                     BackgroundColor="{Binding Answer0Color}"
                     TextColor="{Binding Answer0TextColor}"
-                    WidthRequest="300"
-
-                    MinimumHeightRequest="60"
+                    MinimumHeightRequest="50"
                     LineBreakMode="WordWrap"
-                    HorizontalOptions="Center"/>
+                    Margin="0,4"/>
 
-            <!--2 вариант ответа-->
             <Button Text="{Binding AnswerOptions[1]}"
                     Command="{Binding SelectAnswerCommand}"
                     CommandParameter="{Binding AnswerOptions[1]}"
                     BackgroundColor="{Binding Answer1Color}"
                     TextColor="{Binding Answer1TextColor}"
-                    WidthRequest="300"
-
-                    MinimumHeightRequest="60"
+                    MinimumHeightRequest="50"
                     LineBreakMode="WordWrap"
-                    HorizontalOptions="Center"/>
+                    Margin="0,4"/>
 
-            <!--3 вариант ответа-->
             <Button Text="{Binding AnswerOptions[2]}"
                     Command="{Binding SelectAnswerCommand}"
                     CommandParameter="{Binding AnswerOptions[2]}"
                     BackgroundColor="{Binding Answer2Color}"
                     TextColor="{Binding Answer2TextColor}"
-                    WidthRequest="300"
-
-                    MinimumHeightRequest="60"
+                    MinimumHeightRequest="50"
                     LineBreakMode="WordWrap"
-                    HorizontalOptions="Center"/>
+                    Margin="0,4"/>
 
-            <!--4 вариант ответа-->
             <Button Text="{Binding AnswerOptions[3]}"
                     Command="{Binding SelectAnswerCommand}"
                     CommandParameter="{Binding AnswerOptions[3]}"
                     BackgroundColor="{Binding Answer3Color}"
                     TextColor="{Binding Answer3TextColor}"
-                    WidthRequest="300"
-
-                    MinimumHeightRequest="60"
+                    MinimumHeightRequest="50"
                     LineBreakMode="WordWrap"
-                    HorizontalOptions="Center"/>
+                    Margin="0,4"/>
 
-            <!--объяснение ответа-->
+            <!-- объяснение ответа -->
             <Label Text="{Binding AnswerExplanation}" 
-                   FontSize="16"
+                   FontSize="14"
                    FontAttributes="Italic"
                    HorizontalOptions="Center"
-                   Margin="10"/>
+                   HorizontalTextAlignment="Center"
+                   LineBreakMode="WordWrap"
+                   Margin="0,8,0,8"/>
 
-            <!--кнопка "Следующая" или "Завершить" -->
+            <!-- кнопка "Следующая" или "Завершить" -->
             <Button Text="{Binding NextButtonText}"
                     Command="{Binding NextQuestionCommand}"
-                    WidthRequest="150"
-                    Margin="20"/>
+                    HorizontalOptions="Fill"
+                    Margin="0,8,0,0"/>
 
         </VerticalStackLayout>
     </ScrollView>

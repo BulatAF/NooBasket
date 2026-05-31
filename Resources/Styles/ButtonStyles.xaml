@@ -7,7 +7,11 @@
         <Setter Property="TextColor" Value="#FFE9C4"/>
         <Setter Property="BorderColor" Value="#FFE9C4"/>
         <Setter Property="BorderWidth" Value="2"/>
-        <Setter Property="FontSize" Value="22"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="HorizontalOptions" Value="Fill"/>
+        <Setter Property="MinimumHeightRequest" Value="50"/>
+        <Setter Property="LineBreakMode" Value="WordWrap"/>
+        <Setter Property="Padding" Value="10,12"/>
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup x:Name="CommonStates">
