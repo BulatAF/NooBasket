@@ -19,7 +19,7 @@ namespace NooBasket.Models
                 if (NumberOfAll > 0)
                 {
                     double percent = (double)NumberOfCorrect / NumberOfAll * 100;
-                    return percent;
+                    return Math.Round(percent, 0); // округляем до целого
                 }
                 else
                 {
@@ -28,5 +28,4 @@ namespace NooBasket.Models
             }
         }
     }
-
 }

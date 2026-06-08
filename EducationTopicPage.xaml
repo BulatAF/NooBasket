@@ -5,25 +5,26 @@
              Title="Обучение">
     <ScrollView Orientation="Vertical" >
         <StackLayout>
-            <Button Text="Назад"
+            <Button Text="В меню обучения"
                     Command="{Binding GoToEducationPageCommand}"
-                    HorizontalOptions="Start"/>
-
-            <Button Text="Помощь"
-                    Command="{Binding OpenHelpCommand}"
                     HorizontalOptions="Start"/>
 
             <Label Text="{Binding Title}"
                    FontSize="28"
                    FontAttributes="Bold"
-                   HorizontalOptions="Center"
+                   HorizontalOptions="Center"                   
                    Margin="20"/>
 
             <VerticalStackLayout x:Name="BlocksContainer" Spacing="10" Margin="20"/>
 
-            <Button Text="Пройти тест"
+            <Button Text="Пройти тест по теме"
                     Command="{Binding GoToTestCommand}"
                     Margin="20"/>
+
+            <Button Text="Изучить следующую тему"
+                    Command="{Binding GoToNextEducationTopicCommand}"
+                    Margin="20"
+                    IsVisible="{Binding IsNextTopicButtonVisible}"/>
         </StackLayout>
     </ScrollView>
 </ContentPage>

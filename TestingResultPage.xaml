@@ -5,47 +5,55 @@
              Title="Результат теста"
              NavigationPage.HasBackButton="False">
 
-    <VerticalStackLayout Padding="10" Spacing="20">
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="12">
 
-        <Button Text="В меню тестов" 
-                    Command="{Binding GoToTestingPageCommand}"
+            <Button Text="На главную" 
+                    Command="{Binding GoToMainCommand}"
                     HorizontalOptions="Start"/>
 
-        <Button Text="Помощь"
-                    Command="{Binding OpenHelpCommand}"
-                HorizontalOptions="Start"/>
+            <!-- результат в процентах -->
+            <VerticalStackLayout HorizontalOptions="Center" Spacing="4" Margin="0,16,0,16">
+                <Label Text="Вы прошли тест на" 
+                       FontSize="20"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"/>
+                <Label Text="{Binding Percent}"
+                       FontSize="32"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"/>
+            </VerticalStackLayout>
 
-        <HorizontalStackLayout HorizontalOptions="Center" Padding="10" Spacing="20">
-            <Label Text="Вы прошли тест на " 
-                   VerticalOptions="Center" 
-                   FontSize="24"/>
-            <Label Text="{Binding Percent}"
-                   FontSize="24"
-                   FontAttributes="Bold"/>
-        </HorizontalStackLayout>
+            <!-- количество правильных ответов -->
+            <VerticalStackLayout HorizontalOptions="Center" Spacing="4" Margin="0,0,0,16">
+                <Label Text="Количество правильных ответов" 
+                       FontSize="16"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"/>
+                <Label Text="{Binding CorrectCount}"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"/>
+            </VerticalStackLayout>
 
-        <HorizontalStackLayout HorizontalOptions="Center" Padding="10" Spacing="20">
-            <Label Text="Количество правильных ответов:" 
-                   FontSize="20"/>
-            <Label Text="{Binding CorrectCount}"
-                   FontSize="20"
-                   FontAttributes="Bold"/>
-        </HorizontalStackLayout>
+            <Button Text="Пройти тест заново" 
+                    Command="{Binding GoToTestingTopicAgainCommand}"
+                    Margin="0,4"/>
 
-        <Button Text="Пройти тест заново" 
-                Command="{Binding GoToTestingTopicAgainCommand}"
-                Margin="0,0,0,10"
-                HorizontalOptions="Center"/>
+            <Button Text="Перейти к изучению следующей темы" 
+                    Command="{Binding GoToNextEducationTopicCommand}"
+                    Margin="0,4"/>
 
-        <Button Text="Перейти к изучению следующей темы" 
-                Command="{Binding GoToNextEducationTopicCommand}"
-                Margin="0,0,0,10"
-                HorizontalOptions="Center"/>
+            <Button Text="Посмотреть статистику по тестам" 
+                    Command="{Binding GoToStatisticsCommand}"
+                    Margin="0,4"/>
 
-        <Button Text="Посмотреть статистику по тестам" 
-            Command="{Binding GoToStatisticsCommand}"
-            Margin="0,0,0,10"
-            HorizontalOptions="Center"/>
+            <Label Text="{Binding BestPercent}" 
+                   FontSize="14"
+                   HorizontalOptions="Center"
+                   TextColor="Gray"
+                   Margin="0,0,0,16"/>
 
-    </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

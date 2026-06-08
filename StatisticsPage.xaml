@@ -7,22 +7,23 @@
     <ScrollView Orientation="Vertical" Padding="20">
         <StackLayout>
 
-            
-            <Button Text="Назад" 
-                    Command="{Binding GoToMainCommand}"
-                    HorizontalOptions="Start"/>
 
+            <StackLayout Orientation="Horizontal" Spacing="10">
+                <Button Text="На главную" 
+            Command="{Binding GoToMainCommand}"
+            IsVisible="{Binding IsMainButtonVisible}"/>
 
-            <Button Text="Помощь"
-                    Command="{Binding OpenHelpCommand}"
-                    HorizontalOptions="Start"/>
+                <Button Text="Назад к результатам" 
+            Command="{Binding GoBackToResultsCommand}"
+            IsVisible="{Binding IsBackButtonVisible}"/>
+            </StackLayout>
 
             <Label Text="Статистика"
                    FontSize="24"
                    FontAttributes="Bold"
                    HorizontalOptions="Center"
                    Margin="10"/>
-            
+
             <Label Text="{Binding StatisticsMessage}" 
                    FontSize="24"
                    HorizontalOptions="Center"

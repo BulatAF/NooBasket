@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using Microsoft.Maui.Graphics;
 
 namespace NooBasket.Models
 {
@@ -20,6 +21,25 @@ namespace NooBasket.Models
 
         [JsonPropertyName("questions")]
         public List<TestQuestion> Questions { get; set; } = new();
+
+        // доступность теста (не сохраняется в json)
+        public bool IsAvailable { get; set; } = true;
+
+        // цвет кнопки в зависимости от доступности
+        public Color ButtonColor
+        {
+            get
+            {
+                if (IsAvailable)
+                {
+                    return Color.FromArgb("#E28F04");
+                }
+                else
+                {
+                    return Colors.LightGray;
+                }
+            }
+        }
     }
 
     public class TestQuestion

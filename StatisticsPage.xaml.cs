@@ -10,7 +10,6 @@ public partial class StatisticsPage : ContentPage
         BindingContext = new StatisticsPageViewModel();
     }
 
-    //чтобы статистика обновлялась не выходя из приложения
     protected override void OnAppearing()
     {
         base.OnAppearing();

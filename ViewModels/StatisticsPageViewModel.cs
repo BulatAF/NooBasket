@@ -5,54 +5,84 @@ using NooBasket.Services;
 
 namespace NooBasket.ViewModels
 {
+    [QueryProperty(nameof(ReturnToTopicId), "returnToTopicId")]
+    [QueryProperty(nameof(SavedCorrect), "savedCorrect")]
+    [QueryProperty(nameof(SavedTotal), "savedTotal")]
     public partial class StatisticsPageViewModel : ObservableObject
     {
         [ObservableProperty]
         private string _statisticsMessage = "В статистике представлены ваши лучшие результаты по каждому из тестов";
-        // список статистики по всем темам
+
         [ObservableProperty]
         private List<TopicStatistics> _topicsStats = new();
 
+        [ObservableProperty]
+        private int _returnToTopicId = 0;
+
+        [ObservableProperty]
+        private int _savedCorrect = 0;
+
+        [ObservableProperty]
+        private int _savedTotal = 0;
+
+        [ObservableProperty]
+        private bool _isBackButtonVisible = false;
+
+        [ObservableProperty]
+        private bool _isMainButtonVisible = true;
+
+        partial void OnReturnToTopicIdChanged(int value)
+        {
+            if (value > 0)
+            {
+                IsBackButtonVisible = true;
+                IsMainButtonVisible = true;
+            }
+            else
+            {
+                IsBackButtonVisible = false;
+                IsMainButtonVisible = true;
+            }
+        }
+
         public StatisticsPageViewModel()
         {
-            LoadStatistics(); // при создании страницы загружаем статистику
+            LoadStatistics();
         }
 
         public async void LoadStatistics()
         {
             try
             {
-                // временный список для сбора данных
                 List<TopicStatistics> tempStats = new List<TopicStatistics>();
 
-                // проходим по всем темам
                 for (int i = 1; i <= 19; i++)
                 {
-                    // получаем тему чтобы узнать название
                     TestTopic? topic = await TestingTopicsLoader.GetTopicAsync(i);
-
-                    // получаем прогресс по этой теме (если проходили)
                     TestingTopicsProgress? progress = await TestingTopicsProgressLoader.GetProgressAsync(i);
 
-                    // создаем объект статистики для темы
                     TopicStatistics stat = new TopicStatistics();
                     stat.TopicId = i;
-                    stat.TopicTitle = topic.Title;
 
-                    // если прогресс есть и были ответы на вопросы
-                    if (progress != null && progress.NumberOfAll > 0)
+                    if (topic != null)
                     {
-                        stat.IsCompleted = true; // тест пройден
-                        stat.CorrectCount = progress.NumberOfCorrect; // сколько правильных
-                        stat.TotalQuestions = progress.NumberOfAll; // сколько всего ответов
-                        stat.Percent = progress.Percent; // процент правильных
+                        stat.TopicTitle = topic.Title;
                     }
-                    // если прогресса нет (тест еще не проходили)
                     else
                     {
-                        stat.IsCompleted = false; // тест еще не проходили
+                        stat.TopicTitle = $"Тема {i}";
+                    }
 
-                        // общее количество вопросов в теме
+                    if (progress != null && progress.NumberOfAll > 0)
+                    {
+                        stat.IsCompleted = true;
+                        stat.CorrectCount = progress.NumberOfCorrect;
+                        stat.TotalQuestions = progress.NumberOfAll;
+                        stat.Percent = progress.Percent;
+                    }
+                    else
+                    {
+                        stat.IsCompleted = false;
                         if (topic != null)
                         {
                             stat.TotalQuestions = topic.Questions.Count;
@@ -63,19 +93,17 @@ namespace NooBasket.ViewModels
                         }
                     }
 
-                    tempStats.Add(stat); // добавляем во временный список
+                    tempStats.Add(stat);
                 }
 
-                TopicsStats = tempStats; // присваиваем основной список 
+                TopicsStats = tempStats;
             }
             catch (Exception ex)
             {
-                // если что то пошло не так
                 await Shell.Current.DisplayAlert("Ошибка", ex.Message, "OK");
             }
         }
 
-        // команда для возврата на главную
         [RelayCommand]
         private async Task GoToMainAsync()
         {
@@ -83,9 +111,19 @@ namespace NooBasket.ViewModels
         }
 
         [RelayCommand]
-        private async Task OpenHelpAsync()
+        private async Task GoBackToResultsAsync()
         {
-            await HelpService.OpenHelpAsync();
+            if (ReturnToTopicId > 0)
+            {
+                // передаем сохраненные результаты обратно
+                var navigationParams = new Dictionary<string, object>
+                {
+                    { "topicId", ReturnToTopicId },
+                    { "lastAttemptCorrect", SavedCorrect },
+                    { "lastAttemptTotal", SavedTotal }
+                };
+                await Shell.Current.GoToAsync($"//TestingResultPage", navigationParams);
+            }
         }
     }
 }

@@ -1,67 +1,102 @@
 using NooBasket.ViewModels;
 using NooBasket.Models;
+using System.ComponentModel;
 
 namespace NooBasket;
 
 public partial class EducationTopicPage : ContentPage
 {
+    private EducationTopicPageViewModel? _viewModel;
+
     public EducationTopicPage()
     {
         InitializeComponent();
         BindingContext = new EducationTopicPageViewModel();
     }
 
-    protected override async void OnAppearing()
+    protected override void OnAppearing()
     {
         base.OnAppearing();
 
         if (BindingContext is EducationTopicPageViewModel vm)
         {
-            await Task.Delay(100); // ждем загрузки данных (костыль)
-            // чистим контейнер чтобы не дублировать контент при возврате на страницу
-            BlocksContainer.Children.Clear();
-
-            // перебираем каждый блок из загруженного списка
-            foreach (Block block in vm.Blocks)
+            if (_viewModel != null)
             {
-                // создаем вертикальный стек для одного элемента (текст+картинка+подпись)
-                VerticalStackLayout stack = new VerticalStackLayout { Spacing = 5, Padding = 0 };
-
-                // если в блоке есть текст добавляем его
-                if (!string.IsNullOrEmpty(block.Text))
-                {
-                    stack.Children.Add(new Label
-                    {
-                        Text = block.Text,
-                        FontSize = 22 
-                    });
-                }
-
-                // если есть ссылка на картинку - добавляем изображение
-                if (!string.IsNullOrEmpty(block.Image))
-                {
-                    stack.Children.Add(new Image
-                    {
-                        Source = block.Image,
-                        HeightRequest = 200,
-                        HorizontalOptions = LayoutOptions.Center
-                    });
-                }
-
-                // если есть подпись к картинке добавляем
-                if (!string.IsNullOrEmpty(block.Caption))
-                {
-                    stack.Children.Add(new Label
-                    {
-                        Text = block.Caption,
-                        FontSize = 16,
-                        HorizontalOptions = LayoutOptions.Center
-                    });
-                }
-
-                // добавляем собранный элемент в общий контейнер
-                BlocksContainer.Children.Add(stack);
+                _viewModel.PropertyChanged -= ViewModel_PropertyChanged;
             }
+
+            _viewModel = vm;
+            _viewModel.PropertyChanged += ViewModel_PropertyChanged;
+
+            LoadBlocks(_viewModel.Blocks);
+        }
+    }
+
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+
+        if (_viewModel != null)
+        {
+            _viewModel.PropertyChanged -= ViewModel_PropertyChanged;
+        }
+    }
+
+    private void ViewModel_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(EducationTopicPageViewModel.Blocks))
+        {
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                if (_viewModel != null)
+                {
+                    LoadBlocks(_viewModel.Blocks);
+                }
+            });
+        }
+    }
+
+    private void LoadBlocks(List<Block> blocks)
+    {
+        BlocksContainer.Children.Clear();
+
+        foreach (Block block in blocks)
+        {
+            VerticalStackLayout stack = new VerticalStackLayout { Spacing = 5, Padding = 0 };
+
+            if (!string.IsNullOrEmpty(block.Text))
+            {
+                stack.Children.Add(new Label
+                {
+                    Text = block.Text,
+                    FontSize = 22,
+                    LineBreakMode = LineBreakMode.WordWrap
+                });
+            }
+
+            if (!string.IsNullOrEmpty(block.Image))
+            {
+                stack.Children.Add(new Image
+                {
+                    Source = block.Image,
+                    HeightRequest = 200,
+                    HorizontalOptions = LayoutOptions.Center,
+                    Aspect = Aspect.AspectFit
+                });
+            }
+
+            if (!string.IsNullOrEmpty(block.Caption))
+            {
+                stack.Children.Add(new Label
+                {
+                    Text = block.Caption,
+                    FontSize = 16,
+                    HorizontalOptions = LayoutOptions.Center,
+                    LineBreakMode = LineBreakMode.WordWrap
+                });
+            }
+
+            BlocksContainer.Children.Add(stack);
         }
     }
 }
