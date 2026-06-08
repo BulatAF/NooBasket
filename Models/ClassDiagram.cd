@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="NooBasket.Models.EducationTopics">
+    <Position X="3" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Models\EducationTopics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NooBasket.Models.Topic">
+    <Position X="1.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAGBAAAAAAAAEAAAACAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>Models\EducationTopics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NooBasket.Models.Block">
+    <Position X="1.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAACQAACAAAAAA=</HashCode>
+      <FileName>Models\EducationTopics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NooBasket.Models.TestingTopics">
+    <Position X="7.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>Models\TestingTopics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NooBasket.Models.TestTopic">
+    <Position X="5.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAEAAAACAAAAAAAAAAAAEAAAAAIAAAAA=</HashCode>
+      <FileName>Models\TestingTopics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NooBasket.Models.TestQuestion">
+    <Position X="7.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAABBAAAAAACAAAAAA=</HashCode>
+      <FileName>Models\TestingTopics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NooBasket.Models.TestingTopicsLoader">
+    <Position X="5.25" Y="3.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAEEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Models\TestingTopicsLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NooBasket.Models.TestingTopicsProgress">
+    <Position X="7.25" Y="4" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABAAIQAAACAAAAAA=</HashCode>
+      <FileName>Models\TestingTopicsProgress.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NooBasket.Models.TopicStatistics">
+    <Position X="9" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAgAAAAAAAAAAAAACAAAAAAEBAgAACCAAAAAA=</HashCode>
+      <FileName>Models\TopicStatistics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NooBasket.Models.TestingTopicsProgressLoader">
+    <Position X="9.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAEABCAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\TestingTopicsProgressLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="NooBasket.Models.EducationTopicsLoader">
+    <Position X="3" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
+      <FileName>Models\EducationTopicsLoader.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
