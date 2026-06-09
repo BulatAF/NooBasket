@@ -50,7 +50,7 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\logo.png" ForegroundScale="0.65" Color="#FFFFFF" />
+		<MauiIcon Include="Resources\AppIcon\logo.png" Link="Platforms\Android\Resources\mipmap-hdpi\appicon.png" ForegroundScale="0.65" Color="#FFFFFF" />
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
