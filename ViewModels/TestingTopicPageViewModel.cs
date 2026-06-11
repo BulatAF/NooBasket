@@ -399,11 +399,11 @@ namespace NooBasket.ViewModels
                 if (ReturnToResults == "yes")
                 {
                     var navigationParams = new Dictionary<string, object>
-            {
-                { "topicId", _topicId },
-                { "lastAttemptCorrect", _prevCorrect },
-                { "lastAttemptTotal", _prevTotal }
-            };
+                {
+                    { "topicId", _topicId },
+                    { "lastAttemptCorrect", _prevCorrect },
+                    { "lastAttemptTotal", _prevTotal }
+                    };
 
                     await Shell.Current.GoToAsync("//TestingResultPage", navigationParams);
                 }
