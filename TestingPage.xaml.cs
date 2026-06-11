@@ -9,4 +9,14 @@ public partial class TestingPage : ContentPage
         InitializeComponent();
         BindingContext = new TestingPageViewModel();
     }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        if (BindingContext is TestingPageViewModel viewModel)
+        {
+            viewModel.ChangeButtonColors();
+        }
+    }
 }

@@ -26,7 +26,7 @@ namespace NooBasket.ViewModels
                     TestTopic topic = await TestingTopicsLoader.GetTopicAsync(i);
                     if (topic != null)
                     {
-                        // проверяем доступность теста
+                        // устанавливаем доступность сразу при загрузке
                         topic.IsAvailable = await IsTopicAvailable(topic);
                         tempList.Add(topic);
                     }
@@ -66,8 +66,11 @@ namespace NooBasket.ViewModels
         {
             try
             {
+                // проверяем доступность прямо сейчас
+                bool isAvailable = await IsTopicAvailable(topic);
+
                 // если тест недоступен - показываем сообщение
-                if (!topic.IsAvailable)
+                if (!isAvailable)
                 {
                     int previousTopicId = topic.Id - 1;
                     TestingTopicsProgress? progress = await TestingTopicsProgressLoader.GetProgressAsync(previousTopicId);
@@ -92,6 +95,29 @@ namespace NooBasket.ViewModels
             catch (Exception ex)
             {
                 await Shell.Current.DisplayAlert("Ошибка навигации из меню тестирования", ex.Message, "OK");
+            }
+        }
+
+        public async void ChangeButtonColors()
+        {
+            if (Topics == null || Topics.Count == 0) return;
+
+            bool needUpdate = false;
+
+            foreach (var topic in Topics)
+            {
+                bool wasAvailable = topic.IsAvailable;
+                topic.IsAvailable = await IsTopicAvailable(topic);
+
+                if (wasAvailable != topic.IsAvailable)
+                {
+                    needUpdate = true;
+                }
+            }
+
+            if (needUpdate)
+            {
+                Topics = new List<TestTopic>(Topics);
             }
         }
     }

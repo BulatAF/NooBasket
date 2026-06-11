@@ -20,7 +20,7 @@ namespace NooBasket.Models
             using Stream stream = await FileSystem.OpenAppPackageFileAsync("EducationTopics.json");
             using StreamReader reader = new StreamReader(stream, Encoding.UTF8);
             string jsonContent = await reader.ReadToEndAsync();// читаем из файла и преобразуем все в строку
-            _allTopics = JsonSerializer.Deserialize<EducationTopics>(jsonContent);// берем строку и с помощью Deserialize приводим ее к типу 
+            _allTopics = JsonSerializer.Deserialize<EducationTopics>(jsonContent);
         }
 
 
