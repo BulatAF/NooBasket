@@ -31,7 +31,7 @@ namespace NooBasket.ViewModels
         private async Task ContactSupportAsync()//всплывающее окно с данными техподдержки
         {
             await Shell.Current.DisplayAlert("Поддержка",
-                "Свяжитесь с нами: ",
+                "Свяжитесь с нами: emonopina@edu.hse.ru",
                 "OK");
         }
 
