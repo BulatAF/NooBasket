@@ -1,5 +1,6 @@
-using NooBasket.ViewModels;
+using Microsoft.Maui.Platform;
 using NooBasket.Models;
+using NooBasket.ViewModels;
 using System.ComponentModel;
 
 namespace NooBasket;
@@ -17,6 +18,8 @@ public partial class EducationTopicPage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
+
+        MainScrollView.ScrollToAsync(0, 0, false);
 
         if (BindingContext is EducationTopicPageViewModel vm)
         {
@@ -69,7 +72,7 @@ public partial class EducationTopicPage : ContentPage
                 stack.Children.Add(new Label
                 {
                     Text = block.Text,
-                    FontSize = 22,
+                    FontSize = 18,
                     LineBreakMode = LineBreakMode.WordWrap
                 });
             }
@@ -98,5 +101,7 @@ public partial class EducationTopicPage : ContentPage
 
             BlocksContainer.Children.Add(stack);
         }
+
+        MainScrollView.ScrollToAsync(0, 0, false);
     }
 }

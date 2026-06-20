@@ -3,28 +3,33 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NooBasket.EducationTopicPage"
              Title="Обучение">
-    <ScrollView Orientation="Vertical" >
-        <StackLayout>
-            <Button Text="В меню обучения"
-                    Command="{Binding GoToEducationPageCommand}"
-                    HorizontalOptions="Start"/>
 
-            <Label Text="{Binding Title}"
-                   FontSize="28"
-                   FontAttributes="Bold"
-                   HorizontalOptions="Center"                   
-                   Margin="20"/>
+    <Grid RowDefinitions="Auto, *">
+        <Button Grid.Row="0"
+                Text="В меню обучения"
+                Command="{Binding GoToEducationPageCommand}"
+                HorizontalOptions="Start"
+                Margin="10"/>
 
-            <VerticalStackLayout x:Name="BlocksContainer" Spacing="10" Margin="20"/>
+        <ScrollView Grid.Row="1" x:Name="MainScrollView" Orientation="Vertical">
+            <StackLayout>
+                <Label Text="{Binding Title}"
+                       FontSize="22"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"                   
+                       Margin="20"/>
 
-            <Button Text="Пройти тест по теме"
-                    Command="{Binding GoToTestCommand}"
-                    Margin="20"/>
+                <VerticalStackLayout x:Name="BlocksContainer" Spacing="10" Margin="20"/>
 
-            <Button Text="Изучить следующую тему"
-                    Command="{Binding GoToNextEducationTopicCommand}"
-                    Margin="20"
-                    IsVisible="{Binding IsNextTopicButtonVisible}"/>
-        </StackLayout>
-    </ScrollView>
+                <Button Text="Пройти тест по теме"
+                        Command="{Binding GoToTestCommand}"
+                        Margin="20"/>
+
+                <Button Text="Изучить следующую тему"
+                        Command="{Binding GoToNextEducationTopicCommand}"
+                        Margin="20"
+                        IsVisible="{Binding IsNextTopicButtonVisible}"/>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>
